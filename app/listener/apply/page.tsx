@@ -63,7 +63,7 @@ export default function ApplyPage() {
                             <div className="aspect-video bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group cursor-pointer hover:border-primary/30 transition-all relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <PlayCircle className="w-16 h-16 text-white/20 group-hover:text-primary group-hover:scale-110 transition-all relative z-10" />
-                                <p className="absolute bottom-6 left-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/20">ChillMeet Listener Protocol V1.0</p>
+                                <p className="absolute bottom-6 left-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Sukun Listener Protocol V1.0</p>
                             </div>
                         </div>
 
@@ -112,7 +112,7 @@ export default function ApplyPage() {
                             <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4">
                                 <input required type="checkbox" className="mt-1 w-4 h-4 rounded border-white/10 bg-white/5 text-primary focus:ring-primary" />
                                 <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest leading-relaxed">
-                                    I agree to follow the ChillMeet Listener Script and Rules. I understand that any violation will lead to immediate removal.
+                                    I agree to follow the Sukun Listener Script and Rules. I understand that any violation will lead to immediate removal.
                                 </span>
                             </div>
 

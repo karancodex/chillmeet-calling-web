@@ -4,10 +4,10 @@ const content = (
     <>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
         <h2>Introduction</h2>
-        <p>By using ChillMeet, you agree to these Terms and Conditions. You must be at least 18 years old to use this service.</p>
+        <p>By using Sukun, you agree to these Terms and Conditions. You must be at least 18 years old to use this service.</p>
 
         <h2>Not Therapy or Medical Advice</h2>
-        <p>ChillMeet provides peer support and emotional connection. It is <strong>NOT</strong> a substitute for professional mental health services, therapy, or medical advice. Listeners are not licensed professionals.</p>
+        <p>Sukun provides peer support and emotional connection. It is <strong>NOT</strong> a substitute for professional mental health services, therapy, or medical advice. Listeners are not licensed professionals.</p>
 
         <h2>User Conduct</h2>
         <p>You agree to treat listeners with respect. Harassment, hate speech, or inappropriate behavior will result in an immediate ban without refund.</p>

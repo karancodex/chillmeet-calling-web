@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, CheckCircle2, ShieldCheck, Users } from "lucide-react";
+import { Phone, CheckCircle2, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 
 export default function TrustWitness() {
@@ -104,34 +104,19 @@ export default function TrustWitness() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-[1.1]">
+                            <h2 className="text-3xl md:text-5xl font-black text-white mb-8 tracking-tighter leading-[1.1] font-display">
                                 Trusted By <br />
-                                <span className="text-gradient">Thousands Every Night.</span>
+                                <span className="text-gradient-premium">A Growing Community.</span>
                             </h2>
-                            <p className="text-white/40 text-base font-bold mb-10 leading-relaxed">
+                            <p className="text-slate-500 text-sm font-bold mb-10 leading-relaxed max-w-lg">
                                 Behind every call is a real human, vetted for empathy and committed to your peace of mind. We don't just provide a service; we provide a safe harbor.
                             </p>
 
-                            <div className="space-y-6 mb-12">
-                                {[
-                                    { icon: Users, label: "10,000+ Trust Interactions", desc: "Our community continues to grow daily." },
-                                    { icon: ShieldCheck, label: "Strict Safety Vetting", desc: "Every listener goes through a rigorous empathy check." }
-                                ].map((item, idx) => (
-                                    <div key={idx} className="flex gap-4">
-                                        <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 shrink-0">
-                                            <item.icon className="w-5 h-5 text-primary" />
-                                        </div>
-                                        <div>
-                                            <h4 className="text-white font-black text-sm uppercase tracking-tight">{item.label}</h4>
-                                            <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mt-1">{item.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
 
-                            <button className="px-10 py-5 bg-white text-dark font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all shadow-xl shadow-white/5">
+
+                            {/* <button className="px-10 py-5 bg-white text-dark font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all shadow-xl shadow-white/5">
                                 Learn More About Our Listeners
-                            </button>
+                            </button> */}
                         </motion.div>
                     </div>
                 </div>

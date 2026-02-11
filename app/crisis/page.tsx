@@ -33,7 +33,7 @@ export default function CrisisPage() {
                     </h1>
 
                     <p className="text-white/60 text-base font-bold leading-relaxed mb-10 max-w-2xl mx-auto">
-                        If you are experiencing suicidal thoughts or are in immediate danger, ChillMeet is not the right place for you right now. <span className="text-red-500">Please reach out to professional emergency services immediately.</span>
+                        If you are experiencing suicidal thoughts or are in immediate danger, Sukun is not the right place for you right now. <span className="text-red-500">Please reach out to professional emergency services immediately.</span>
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

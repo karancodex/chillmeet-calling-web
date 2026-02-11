@@ -10,7 +10,7 @@ import Image from "next/image";
 const faqs = [
     {
         question: "Is this therapy or counseling?",
-        answer: "No. ChillMeet is an emotional support platform connecting you with empathetic pier listeners, not licensed therapists. We are for casual venting, stress relief, and human connection. If you have a serious medical or mental health condition, please seek professional assistance."
+        answer: "No. Sukun is an emotional support platform connecting you with empathetic peer listeners, not licensed therapists. We are for casual venting, stress relief, and human connection. If you have a serious medical or mental health condition, please seek professional assistance."
     },
     {
         question: "How anonymous is the service?",
@@ -110,10 +110,7 @@ export default function FAQPage() {
                         <a href="/contact" className="px-8 py-4 bg-white text-dark rounded-xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all">
                             Send Session Request
                         </a>
-                        <a href="tel:6387197293" className="px-8 py-4 glass-card border-white/10 text-white rounded-xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
-                            <MessageCircle className="w-4 h-4 text-primary" />
-                            Call Support
-                        </a>
+
                     </div>
                 </motion.div>
             </section>

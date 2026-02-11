@@ -66,7 +66,7 @@ export default function ContactPage() {
 
                     <div className="space-y-8">
                         {[
-                            { icon: Mail, title: "Email Us", detail: "hello@chillmeet.com", desc: "For general inquiries and support." },
+                            { icon: Mail, title: "Email Us", detail: "hello@sukun.com", desc: "For general inquiries and support." },
                             { icon: MessageCircle, title: "Live Chat", detail: "Available 24/7", desc: "Talk to our team members directly." },
                             { icon: MapPin, title: "Location", detail: "Global Digital Sanctuary", desc: "Accessible from anywhere in the world." }
                         ].map((item, idx) => (
@@ -91,7 +91,7 @@ export default function ContactPage() {
                         <div className="mt-12 p-10 rounded-[2.5rem] bg-gradient-to-br from-burgundy/20 to-blue-deep/20 border border-white/5 relative overflow-hidden">
                             <h3 className="text-xl font-black text-white mb-4 relative z-10">Trusted Worldwide</h3>
                             <p className="text-white/40 text-xs font-bold leading-relaxed relative z-10">
-                                Join our community of thousands who find peace in connection every single day.
+                                Join our community of listeners who find peace in connection every single day.
                             </p>
                             <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/10 blur-[60px] rounded-full" />
                         </div>

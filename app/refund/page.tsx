@@ -4,7 +4,7 @@ const content = (
     <>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
         <h2>Our Refund Policy</h2>
-        <p>ChillMeet strives to provide quality connection. We understand things don't always go as planned.</p>
+        <p>Sukun strives to provide quality connection. We understand things don't always go as planned.</p>
 
         <h2>Eligible Refunds</h2>
         <ul>
@@ -22,7 +22,7 @@ const content = (
         </ul>
 
         <h2>How to Request</h2>
-        <p>Contact support@chillmeet.com within 24 hours of the incident.</p>
+        <p>Contact {process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@sukun.life"} within 24 hours of the incident.</p>
     </>
 );
 

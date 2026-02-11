@@ -59,7 +59,7 @@ export default function SafetyPage() {
                     </h1>
 
                     <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
-                        We've built ChillMeet from the ground up to be a completely secure sanctuary.
+                        We've built Sukun from the ground up to be a completely secure sanctuary.
                     </p>
                 </motion.div>
 
