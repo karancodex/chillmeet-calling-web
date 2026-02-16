@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Twitter, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import SukunLogo from "./SukunLogo";
 import Image from "next/image";
 
@@ -29,16 +29,6 @@ export default function Footer() {
                         <p className="text-slate-400 text-xs font-bold leading-relaxed mb-8 max-w-xs">
                             A sanctuary for your thoughts. Talk anonymously, listen empathetically, and find your sukun.
                         </p>
-                        <div className="flex items-center gap-4">
-                            {[
-                                { Icon: Instagram, href: "https://instagram.com" },
-                                { Icon: Twitter, href: "https://twitter.com" }
-                            ].map((social, idx) => (
-                                <Link key={idx} href={social.href} target="_blank" className="w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-400 hover:text-primary hover:bg-white/5 transition-all">
-                                    <social.Icon className="w-5 h-5" />
-                                </Link>
-                            ))}
-                        </div>
                     </div>
 
                     <div>

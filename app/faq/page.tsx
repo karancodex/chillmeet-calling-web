@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Search, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const faqs = [
     {
@@ -17,16 +18,12 @@ const faqs = [
         answer: "Exremely. We prioritize your privacy above all else. You do not need to share your real name, location, or photo. Calls are audio-only, encrypted, and no personal identifying information is shared with listeners."
     },
     {
-        question: "Are my calls recorded?",
-        answer: "No, we do not record calls. We believe in temporary, safe spaces. Your conversations are live and stay between you and the listener."
-    },
-    {
         question: "What if I'm not happy with my session?",
-        answer: "Your peace of mind is our priority. If you experience technical issues or if a listener doesn't meet our empathy standards, please contact support within 24 hours for a resolution or refund."
+        answer: "Sukun sessions are non-refundable. Please note that our team consists of empathetic listeners who provide a safe space for you to be heard; we are not professional therapists or medical experts."
     },
     {
         question: "Do I need an account to call?",
-        answer: "You can start a Quick Vent without a full account. However, creating a profile allows you to track your history and favorite certain listeners."
+        answer: "No, you do not need to create an account to call. Once your session is confirmed, you will receive the listener's contact details via email."
     }
 ];
 
@@ -72,7 +69,7 @@ export default function FAQPage() {
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-white/[0.03] transition-all focus:outline-none"
+                                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-white/3 transition-all focus:outline-none"
                             >
                                 <span className="font-black text-white uppercase tracking-tight text-sm md:text-base">{faq.question}</span>
                                 <div className={`w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition-transform duration-300 ${openIndex === idx ? 'rotate-180 bg-primary/20' : ''}`}>
@@ -102,14 +99,14 @@ export default function FAQPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}
-                    className="mt-20 p-12 glass-card border-white/5 text-center bg-gradient-to-br from-primary/5 to-transparent"
+                    className="mt-20 p-12 glass-card border-white/5 text-center bg-linear-to-br from-primary/5 to-transparent"
                 >
                     <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tight">Still have questions?</h3>
                     <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em] mb-10">We're here to help you 24/7.</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/contact" className="px-8 py-4 bg-white text-dark rounded-xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all">
+                        <Link href="/contact" className="px-8 py-4 bg-white text-dark rounded-xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all">
                             Send Session Request
-                        </a>
+                        </Link>
 
                     </div>
                 </motion.div>

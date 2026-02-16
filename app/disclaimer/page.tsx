@@ -14,7 +14,7 @@ const content = (
 
         <h2>Emergencies</h2>
         <p>If you or someone you know is in immediate danger, experiencing a medical emergency, or having thoughts of self-harm, please call emergency services immediately.</p>
-        <ul className="mt-4 space-y-2">
+        <ul>
             <li><strong>India:</strong> 112 (National Emergency), 100 (Police), 108 (Ambulance)</li>
             <li><strong>USA/Canada:</strong> 911</li>
             <li><strong>UK:</strong> 999 or 111</li>

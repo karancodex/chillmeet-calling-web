@@ -1,4 +1,5 @@
 import LegalLayout from "@/components/ui/LegalLayout";
+import Link from "next/link";
 
 const content = (
     <>
@@ -22,7 +23,7 @@ const content = (
         </ul>
 
         <h2>How to Request</h2>
-        <p>Contact {process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@sukun.life"} within 24 hours of the incident.</p>
+        <p>Please <Link href="/contact" className="text-primary hover:underline">contact us via our official form</Link> within 24 hours of the incident.</p>
     </>
 );
 

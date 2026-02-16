@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Zap, Shield, Heart, Clock, X, Loader2, Sparkles, CreditCard, Mail, Calendar } from "lucide-react";
 import clsx from "clsx";
+import Link from "next/link";
 import Script from "next/script";
 import emailjs from "@emailjs/browser";
 
@@ -63,6 +64,7 @@ const customDurations = [
 
 export default function Pricing() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
     const [loading, setLoading] = useState<string | null>(null);
     const [showSuccess, setShowSuccess] = useState(false);
     const [lastPaymentId, setLastPaymentId] = useState("");
@@ -76,12 +78,18 @@ export default function Pricing() {
         price: 129
     });
 
+    const selectedPlan = plans.find(p => p.id === selectedPlanId);
+
     useEffect(() => {
-        const selected = customDurations.find(d => d.value === formData.duration);
-        if (selected) {
-            setFormData(prev => ({ ...prev, price: selected.price }));
+        if (selectedPlanId === 'plan_custom') {
+            const selected = customDurations.find(d => d.value === formData.duration);
+            if (selected) {
+                setFormData(prev => ({ ...prev, price: selected.price }));
+            }
+        } else if (selectedPlan) {
+            setFormData(prev => ({ ...prev, price: selectedPlan.price as number, duration: selectedPlan.minutes }));
         }
-    }, [formData.duration]);
+    }, [formData.duration, selectedPlanId, selectedPlan]);
 
     // --- Razorpay Integration ---
     const handlePayment = (planId: string, amount: number, isCustom = false) => {
@@ -101,7 +109,7 @@ export default function Pricing() {
                 handleSuccess(response.razorpay_payment_id, planId, amount, isCustom);
             },
             prefill: {
-                email: isCustom ? formData.email : "",
+                email: formData.email,
                 contact: ""
             },
             theme: {
@@ -126,13 +134,13 @@ export default function Pricing() {
         // Send confirmation email
         try {
             const templateParams = {
-                to_email: isCustom ? formData.email : "user@example.com", // In real apps, we'd have user email
-                user_email: isCustom ? formData.email : "Generic User",
-                plan_name: planId,
+                to_email: formData.email,
+                user_email: formData.email,
+                plan_name: selectedPlan?.name || planId,
                 amount: amount,
                 payment_id: paymentId,
-                duration: isCustom ? `${formData.duration} mins` : planId,
-                scheduled_time: isCustom ? `${formData.date} ${formData.time}` : "Immediate",
+                duration: `${formData.duration} mins`,
+                scheduled_time: `${formData.date} ${formData.time}`,
                 site_name: "Sukun"
             };
 
@@ -149,14 +157,20 @@ export default function Pricing() {
         }
     };
 
-    const handleCustomSubmit = (e: React.FormEvent) => {
+    const handlePlanClick = (planId: string) => {
+        setSelectedPlanId(planId);
+        setIsModalOpen(true);
+    };
+
+    const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.email || !formData.date || !formData.time) {
             alert("Please fill all fields");
             return;
         }
         setIsModalOpen(false);
-        handlePayment(`Custom_${formData.duration}min`, formData.price, true);
+        const planName = selectedPlan?.name || "Session";
+        handlePayment(`${planName}_${formData.duration}min`, formData.price, selectedPlanId === 'plan_custom');
     };
 
     return (
@@ -235,7 +249,7 @@ export default function Pricing() {
                                     <div className="grow" />
 
                                     <button
-                                        onClick={() => plan.id === 'plan_custom' ? setIsModalOpen(true) : handlePayment(plan.id, plan.price as number)}
+                                        onClick={() => handlePlanClick(plan.id)}
                                         disabled={!!loading}
                                         className={clsx(
                                             "w-full py-6 rounded-full font-black uppercase tracking-[0.3em] text-[10px] transition-all duration-500 flex items-center justify-center gap-4 active:scale-95",
@@ -260,7 +274,7 @@ export default function Pricing() {
 
                     <div className="mt-16 text-center">
                         <p className="text-[10px] text-slate-500/60 font-medium tracking-widest uppercase">
-                            * By clicking any booking button, you are accepting our <a href="/terms" className="text-primary hover:underline underline-offset-4">Terms & Conditions</a> and <a href="/privacy" className="text-primary hover:underline underline-offset-4">Privacy Policy</a>.
+                            * By clicking any booking button, you are accepting our <Link href="/terms" className="text-primary hover:underline underline-offset-4">Terms & Conditions</Link> and <Link href="/privacy" className="text-primary hover:underline underline-offset-4">Privacy Policy</Link>.
                         </p>
                     </div>
 
@@ -306,11 +320,11 @@ export default function Pricing() {
                                         </button>
 
                                         <div className="mb-10 text-center md:text-left">
-                                            <h3 className="text-3xl font-black text-white mb-2 tracking-tighter font-display">Custom Session</h3>
-                                            <p className="text-slate-400 text-sm font-medium">Schedule a deeper flow at your convenience.</p>
+                                            <h3 className="text-3xl font-black text-white mb-2 tracking-tighter font-display">{selectedPlan?.name || "Secure Booking"}</h3>
+                                            <p className="text-slate-400 text-sm font-medium">Schedule your {selectedPlan?.duration.toLowerCase()} session at your convenience.</p>
                                         </div>
 
-                                        <form onSubmit={handleCustomSubmit} className="space-y-6">
+                                        <form onSubmit={handleFormSubmit} className="space-y-6">
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Email Address</label>
                                                 <div className="relative">
@@ -356,26 +370,28 @@ export default function Pricing() {
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Session Duration</label>
-                                                <div className="grid grid-cols-2 gap-4">
-                                                    {customDurations.map(d => (
-                                                        <button
-                                                            key={d.value}
-                                                            type="button"
-                                                            onClick={() => setFormData(prev => ({ ...prev, duration: d.value }))}
-                                                            className={clsx(
-                                                                "py-4 px-6 rounded-2xl border font-black text-xs transition-all duration-300",
-                                                                formData.duration === d.value
-                                                                    ? "bg-primary/10 border-primary text-primary shadow-[0_0_20px_rgba(124,108,255,0.2)]"
-                                                                    : "bg-white/5 border-white/5 text-slate-500 hover:border-white/20"
-                                                            )}
-                                                        >
-                                                            {d.label}
-                                                        </button>
-                                                    ))}
+                                            {selectedPlanId === 'plan_custom' && (
+                                                <div className="space-y-3">
+                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Session Duration</label>
+                                                    <div className="grid grid-cols-2 gap-4">
+                                                        {customDurations.map(d => (
+                                                            <button
+                                                                key={d.value}
+                                                                type="button"
+                                                                onClick={() => setFormData(prev => ({ ...prev, duration: d.value }))}
+                                                                className={clsx(
+                                                                    "py-4 px-6 rounded-2xl border font-black text-xs transition-all duration-300",
+                                                                    formData.duration === d.value
+                                                                        ? "bg-primary/10 border-primary text-primary shadow-[0_0_20px_rgba(124,108,255,0.2)]"
+                                                                        : "bg-white/5 border-white/5 text-slate-500 hover:border-white/20"
+                                                                )}
+                                                            >
+                                                                {d.label}
+                                                            </button>
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )}
 
                                             <div className="pt-8 border-t border-white/5 flex items-center justify-between mt-4">
                                                 <div>

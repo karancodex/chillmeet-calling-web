@@ -41,7 +41,7 @@ export default function Navbar() {
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-12">
                     <Link
-                        href="/listener/apply"
+                        href="/contact"
                         className="text-xs font-bold uppercase tracking-widest text-white hover:text-primary transition-colors"
                     >
                         Join as Listener
