@@ -1,67 +1,82 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mic } from "lucide-react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { Mic, Menu } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import clsx from "clsx";
-
-import Image from "next/image";
+import ListnerZoneLogo from "./ListnerZoneLogo";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const { scrollY } = useScroll();
 
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        setScrolled(latest > 20);
+    });
 
     return (
-        <nav className={clsx(
-            "fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 transition-all duration-500 rounded-2xl",
-            scrolled ? "glass shadow-2xl py-3 border-white/5" : "bg-transparent py-5"
-        )}>
-            <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="relative w-8 h-8 transform group-hover:rotate-12 transition-transform duration-300">
-                        <Image
-                            src="/images/chillmeet_logo.png"
-                            alt="ChillMeet Logo"
-                            fill
-                            className="object-contain"
-                        />
+        <motion.nav
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className={clsx(
+                "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+                scrolled
+                    ? "bg-[#0B0F1A] border-b border-white/10 py-3 shadow-xl"
+                    : "bg-transparent py-6"
+            )}
+        >
+            <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+                {/* Logo Section */}
+                <Link href="/" className="flex items-center gap-3 group">
+                    <div className="relative w-10 h-10 group-hover:scale-110 transition-transform duration-300">
+                        <ListnerZoneLogo className="w-full h-full" color="white" />
                     </div>
-                    <span className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent tracking-tighter">
-                        ChillMeet
+                    <span className="text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-primary via-secondary to-accent tracking-tighter">
+                        ListnerZone
                     </span>
                 </Link>
 
-                <div className="hidden md:flex items-center gap-8">
-                    <Link href="/listener/apply" className="text-[10px] font-black uppercase tracking-widest text-primary hover:brightness-125 transition-all">
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center gap-12">
+                    <Link
+                        href="/contact"
+                        className="text-xs font-bold uppercase tracking-widest text-white hover:text-primary transition-colors"
+                    >
                         Join as Listener
                     </Link>
-                    {["Pricing", "About", "Safety"].map((item) => (
-                        <Link
-                            key={item}
-                            href={item === "Pricing" ? "/#pricing" : `/${item.toLowerCase().replace(/ /g, "-")}`}
-                            className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors"
-                        >
-                            {item}
-                        </Link>
-                    ))}
-                    <Link href="/contact" className="px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-[10px] font-black uppercase tracking-widest text-white transition-all transform hover:-translate-y-0.5 active:scale-95">
+
+                    <div className="flex items-center gap-10">
+                        {["Pricing", "About", "Safety"].map((item) => (
+                            <Link
+                                key={item}
+                                href={item === "Pricing" ? "/#pricing" : `/${item.toLowerCase().replace(/ /g, "-")}`}
+                                className="text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                            >
+                                {item}
+                            </Link>
+                        ))}
+                    </div>
+
+                    <Link
+                        href="/contact"
+                        className="text-xs font-bold uppercase tracking-widest text-white hover:text-primary transition-colors"
+                    >
                         Contact
                     </Link>
                 </div>
 
+                {/* Action Buttons */}
                 <div className="flex items-center gap-4">
-                    <a href="tel:6387197293" className="px-5 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:shadow-lg hover:shadow-primary/20 transition-all transform hover:-translate-y-0.5 active:scale-95 flex items-center gap-2">
-                        <Mic className="w-4 h-4" />
-                        <span>Talk Now</span>
-                    </a>
+
+
+                    {/* Mobile Menu Toggle */}
+                    <button className="md:hidden p-2 text-white hover:text-primary transition-colors">
+                        <Menu className="w-8 h-8" />
+                    </button>
                 </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 }

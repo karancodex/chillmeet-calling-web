@@ -3,7 +3,7 @@
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { useState } from "react";
-import { PlayCircle, CheckCircle2, Send, ShieldLabel as Shield } from "lucide-react";
+import { PlayCircle, CheckCircle2, Send, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ApplyPage() {
@@ -21,7 +21,7 @@ export default function ApplyPage() {
                         </div>
                         <h1 className="text-3xl font-black text-white mb-6 uppercase tracking-tight">Application Received!</h1>
                         <p className="text-white/40 text-sm font-bold leading-relaxed mb-10">
-                            Our team will review your profile and reach out within 48 hours. Thank you for wanting to give Sukun to others.
+                            Our team will review your profile and reach out within 48 hours. Thank you for wanting to give support to others.
                         </p>
                         <button onClick={() => window.location.href = '/'} className="px-10 py-4 bg-white/5 border border-white/10 text-white rounded-xl font-black uppercase tracking-widest hover:bg-white/10 transition-all">
                             Back to Home
@@ -42,7 +42,7 @@ export default function ApplyPage() {
                     <h1 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
                         Become A <span className="text-gradient">Listener.</span>
                     </h1>
-                    <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em]">Help others find their sukun through the power of listening.</p>
+                    <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em]">Help others find their peace through the power of listening.</p>
                 </motion.div>
 
                 <div className="flex gap-4 mb-12 justify-center">
@@ -61,13 +61,13 @@ export default function ApplyPage() {
                             <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-8 italic">Watch the introductory guide below.</p>
 
                             <div className="aspect-video bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group cursor-pointer hover:border-primary/30 transition-all relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute inset-0 bg-linear-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <PlayCircle className="w-16 h-16 text-white/20 group-hover:text-primary group-hover:scale-110 transition-all relative z-10" />
-                                <p className="absolute bottom-6 left-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/20">ChillMeet Listener Protocol V1.0</p>
+                                <p className="absolute bottom-6 left-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/20">ListnerZone Listener Protocol V1.0</p>
                             </div>
                         </div>
 
-                        <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/5">
+                        <div className="p-8 rounded-2xl bg-white/2 border border-white/5">
                             <h3 className="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-4">You will learn:</h3>
                             <ul className="space-y-3">
                                 {["Active listening techniques", "Non-judgmental speech", "Safe space protocols", "Crisis escalations"].map((item, idx) => (
@@ -109,14 +109,14 @@ export default function ApplyPage() {
                                 <textarea required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-white/10 focus:outline-none focus:border-primary/50 resize-none" placeholder="We value genuine empathy. Tell us why you're a good fit." />
                             </div>
 
-                            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4">
+                            <div className="p-6 rounded-2xl bg-white/2 border border-white/5 flex items-start gap-4">
                                 <input required type="checkbox" className="mt-1 w-4 h-4 rounded border-white/10 bg-white/5 text-primary focus:ring-primary" />
                                 <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest leading-relaxed">
-                                    I agree to follow the ChillMeet Listener Script and Rules. I understand that any violation will lead to immediate removal.
+                                    I agree to follow the ListnerZone Listener Script and Rules. I understand that any violation will lead to immediate removal.
                                 </span>
                             </div>
 
-                            <button type="submit" className="w-full py-6 bg-gradient-to-r from-primary to-accent text-white font-black uppercase tracking-widest rounded-xl shadow-xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 transition-all">
+                            <button type="submit" className="w-full py-6 bg-linear-to-r from-primary to-accent text-white font-black uppercase tracking-widest rounded-xl shadow-xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 transition-all">
                                 Submit For Review
                             </button>
                         </form>

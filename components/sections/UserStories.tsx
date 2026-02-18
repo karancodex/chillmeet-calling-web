@@ -48,9 +48,9 @@ export default function UserStories() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl md:text-5xl font-black mb-4 text-white tracking-tight leading-tight">
+                    <h2 className="text-2xl md:text-4xl font-black mb-4 text-white tracking-tight leading-tight">
                         Real Stories Of <br />
-                        <span className="text-gradient">Finding Sukun.</span>
+                        <span className="text-gradient">Finding Peace.</span>
                     </h2>
                     <p className="text-[10px] text-white/40 font-black uppercase tracking-[0.4em]">From those who found their light in the silence.</p>
                 </motion.div>
@@ -66,7 +66,7 @@ export default function UserStories() {
                             className="glass-card p-8 border border-white/5 relative group"
                         >
                             <div className="flex items-center gap-4 mb-6">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary font-black text-xs border border-white/5">
+                                <div className="w-10 h-10 rounded-full bg-linear-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary font-black text-xs border border-white/5">
                                     {story.initials}
                                 </div>
                                 <div>

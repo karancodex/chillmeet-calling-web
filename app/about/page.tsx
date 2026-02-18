@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Heart, Users, Shield, Target } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import Image from "next/image";
+import ListnerZoneLogo from "@/components/ui/ListnerZoneLogo";
 
 export default function AboutPage() {
     return (
@@ -17,10 +17,10 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-20"
                 >
-                    <h1 className="text-4xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
-                        The Story Of <span className="text-gradient">Sukun.</span>
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter font-display">
+                        The Story Of <span className="text-gradient-premium">ListnerZone.</span>
                     </h1>
-                    <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
+                    <p className="text-slate-500 text-xs font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
                         A digital sanctuary for souls in search of silence and simple human connection.
                     </p>
                 </motion.div>
@@ -31,12 +31,12 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-2xl md:text-4xl font-black text-white mb-8 uppercase tracking-tight">Our Mission</h2>
-                        <p className="text-white/50 text-base font-bold leading-relaxed mb-8">
-                            ChillMeet was born out of a simple observation: in an increasingly connected world, true, unfiltered human connection is becoming a rarity. We are here to bridge the gap between loneliness and professional therapy.
+                        <h2 className="text-xl md:text-3xl font-black text-white mb-8 uppercase tracking-tight font-display">Our Mission</h2>
+                        <p className="text-slate-400 text-sm font-bold leading-relaxed mb-8">
+                            ListnerZone was born out of a simple observation: in an increasingly connected world, true, unfiltered human connection is becoming a rarity. We are here to provide a sanctuary of empathetic listening, separate from clinical therapy.
                         </p>
-                        <p className="text-white/40 text-[11px] font-black uppercase tracking-widest leading-loose">
-                            To create a safe, judgment-free space where anyone—regardless of their story—can find a companion to listen, a heart to understand, and a voice to comfort.
+                        <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest leading-loose">
+                            To create a safe, human-centric space where anyone—regardless of their story—can find a companion to listen, a heart to understand, and a voice to comfort.
                         </p>
                     </motion.div>
 
@@ -44,16 +44,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="glass-card aspect-square relative overflow-hidden flex items-center justify-center p-12 border-white/5"
+                        className="glass-card aspect-square relative overflow-hidden flex items-center justify-center p-12 border-white/5 rounded-[3rem]"
                     >
                         <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full animate-pulse" />
-                        <div className="relative w-full h-full">
-                            <Image
-                                src="/images/chillmeet_logo.png"
-                                alt="Mission"
-                                fill
-                                className="object-contain opacity-20 grayscale hover:grayscale-0 transition-all duration-700"
-                            />
+                        <div className="relative w-48 h-48 opacity-40 hover:opacity-100 transition-opacity duration-700">
+                            <ListnerZoneLogo className="w-full h-full" color="#7C6CFF" />
                         </div>
                     </motion.div>
                 </div>
@@ -61,8 +56,8 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-32">
                     {[
                         { icon: Target, title: "Purpose", desc: "Finding peace in silence." },
-                        { icon: Users, title: "Community", desc: "10k+ Seekers joined." },
-                        { icon: Shield, title: "Security", desc: "100% Secure Sanctuary." },
+                        { icon: Users, title: "Community", desc: "Growing daily." },
+                        { icon: Shield, title: "Security", desc: "Secure Sanctuary." },
                         { icon: Heart, title: "Empathy", desc: "Vetted active listeners." }
                     ].map((item, idx) => (
                         <div key={idx} className="glass-card p-10 border-white/5 text-center">

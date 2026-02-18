@@ -29,7 +29,7 @@ export default function PricingPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-4xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
                         Investment In <span className="text-gradient">Peace.</span>
                     </h1>
                     <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
@@ -62,7 +62,7 @@ export default function PricingPage() {
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                className="glass-card p-10 md:p-20 border border-primary/30 relative overflow-hidden flex flex-col items-center text-center bg-gradient-to-br from-primary/[0.05] to-transparent"
+                                className="glass-card p-10 md:p-20 border border-primary/30 relative overflow-hidden flex flex-col items-center text-center bg-linear-to-br from-primary/5 to-transparent"
                             >
                                 <div className="absolute top-0 right-0 px-8 py-2 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-bl-2xl">
                                     Best Value
@@ -72,30 +72,26 @@ export default function PricingPage() {
                                     <Zap className="w-8 h-8 text-primary" />
                                 </div>
 
-                                <h3 className="text-2xl md:text-4xl font-black text-white mb-4 uppercase tracking-tight">{plan.name}</h3>
+                                <h3 className="text-xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{plan.name}</h3>
                                 <div className="flex items-baseline gap-2 mb-10">
-                                    <span className="text-6xl md:text-8xl font-black text-white">₹{plan.price}</span>
+                                    <span className="text-5xl md:text-6xl font-black text-white">₹{plan.price}</span>
                                     <span className="text-xl text-white/20 font-black uppercase">{plan.unit}</span>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-left mb-12 max-w-2xl mx-auto">
-                                    {plan.features.map(feature => (
-                                        <div key={feature} className="flex items-center gap-3 text-sm text-white/50 font-bold tracking-tight">
-                                            <ShieldCheck className="w-5 h-5 text-primary shrink-0" />
-                                            <span>{feature}</span>
-                                        </div>
-                                    ))}
-                                </div>
+
 
                                 <div className="w-full max-w-md space-y-4">
                                     <a
-                                        href={`upi://pay?pa=${upiId}&pn=ChillMeet&am=${plan.price}&cu=INR&tn=ChillMeet ${plan.name} Subscription`}
-                                        className="w-full block px-16 py-6 bg-gradient-to-r from-primary to-accent text-white font-black text-xl rounded-2xl transition-all shadow-2xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 active:scale-95 text-center"
+                                        href={`upi://pay?pa=${upiId}&pn=ListnerZone&am=${plan.price}&cu=INR&tn=ListnerZone ${plan.name} Subscription`}
+                                        className="w-full block px-16 py-6 bg-linear-to-r from-primary to-accent text-white font-black text-xl rounded-2xl transition-all shadow-2xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 active:scale-95 text-center"
                                     >
                                         Subscribe with UPI
                                     </a>
-                                    <p className="text-[10px] text-white/20 font-black uppercase tracking-[0.4em] text-center">
-                                        UPI ID: <span className="text-primary/40 text-xs tracking-normal">{upiId}</span>
+                                    <p className="text-[10px] text-white/30 font-black uppercase tracking-[0.4em] text-center">
+                                        By subscribing, you agree to our <a href="/terms" className="text-primary hover:underline">Terms</a> & <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
+                                    </p>
+                                    <p className="text-[9px] text-white/10 font-black uppercase tracking-[0.4em] text-center">
+                                        UPI ID: <span className="text-primary/20 text-xs tracking-normal">{upiId}</span>
                                     </p>
                                 </div>
                             </motion.div>

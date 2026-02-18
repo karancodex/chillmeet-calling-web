@@ -9,7 +9,6 @@ import TrustWitness from "@/components/sections/TrustWitness";
 import FastTalkBanner from "@/components/sections/FastTalkBanner";
 import SafetyPrivacy from "@/components/sections/SafetyPrivacy";
 import Pricing from "@/components/sections/Pricing";
-import UserStories from "@/components/sections/UserStories";
 import EmergencyNotice from "@/components/sections/EmergencyNotice";
 import FinalCTA from "@/components/sections/FinalCTA";
 
@@ -26,9 +25,8 @@ export default function Home() {
       <LiveListenerPreview />
       <SafetyPrivacy />
       <div id="pricing"><Pricing /></div>
-      <UserStories />
-      <EmergencyNotice />
       <FinalCTA />
+      <EmergencyNotice />
       <Footer />
     </main>
   );

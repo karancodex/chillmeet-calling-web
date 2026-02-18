@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import ListnerZoneLogo from "../ui/ListnerZoneLogo";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FinalCTA() {
     return (
@@ -19,42 +20,35 @@ export default function FinalCTA() {
 
             <div className="container mx-auto px-6">
                 <motion.div
-                    className="glass-card p-12 md:p-20 text-center relative overflow-hidden border border-white/5"
+                    className="bg-slate-900/60 backdrop-blur-3xl p-12 md:p-24 text-center relative overflow-hidden border border-white/5 rounded-[4rem] shadow-2xl"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
+                    {/* Animated Glow in CTA */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[130px] rounded-full -z-10 animate-pulse-slow" />
 
-                    <div className="relative w-24 h-24 mx-auto mb-10 transform hover:rotate-12 transition-transform duration-500">
-                        <Image src="/images/chillmeet_logo.png" alt="Logo" fill className="object-contain" />
+                    <div className="relative w-20 h-20 mx-auto mb-12 transform hover:rotate-12 transition-transform duration-1000">
+                        <ListnerZoneLogo className="w-full h-full" color="white" />
                     </div>
 
-                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-white leading-tight">
-                        Your Journey To Sukun <br />
-                        <span className="text-gradient">Starts With A Hello.</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-10 text-white leading-[0.9] tracking-[-0.04em] font-display">
+                        Your Journey To Peace <br />
+                        <span className="text-gradient-premium">Starts With A Hello.</span>
                     </h2>
 
-                    <p className="text-base text-white/40 mb-10 max-w-2xl mx-auto font-bold uppercase tracking-widest leading-relaxed">
-                        Don't carry the weight alone. Connect with a compassionate listener now and feel the healing power of being heard.
+                    <p className="text-sm text-slate-400 mb-12 max-w-xl mx-auto font-bold uppercase tracking-[0.2em] leading-relaxed opacity-60">
+                        Don't carry the weight alone. Connect with a listener now and feel the healing power of being heard.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a href="tel:6387197293" className="px-12 py-5 bg-gradient-to-r from-primary to-accent text-white font-black text-lg rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 active:scale-95">
-                            Start Talking Now
-                        </a>
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <Link href="/#pricing" className="px-12 py-5 bg-primary text-white font-black text-lg rounded-full transition-all duration-500 shadow-[0_20px_40px_rgba(124,108,255,0.4)] hover:shadow-[0_25px_50px_rgba(124,108,255,0.6)] transform hover:-translate-y-1 active:scale-95 uppercase tracking-[0.2em]">
+                            Book A Session Now
+                        </Link>
                     </div>
 
-                    <div className="mt-12 flex items-center justify-center gap-6">
-                        <div className="flex -space-x-4">
-                            {[1, 2, 3, 4].map(i => (
-                                <div key={i} className="w-10 h-10 rounded-full border-2 border-dark bg-white/10 glass flex items-center justify-center text-[10px] font-black">
-                                    {String.fromCharCode(64 + i)}
-                                </div>
-                            ))}
-                        </div>
-                        <p className="text-[10px] text-white/30 font-black uppercase tracking-widest">Joined by 10k+ Seekers</p>
-                    </div>
+
                 </motion.div>
             </div>
         </section>

@@ -28,6 +28,7 @@ export default function SafetyPrivacy() {
                     src="/images/hero_banner_premium.png"
                     alt="Background"
                     fill
+                    sizes="100vw"
                     className="object-cover opacity-5"
                 />
             </div>
@@ -45,28 +46,31 @@ export default function SafetyPrivacy() {
                             <span>Absolute Privacy</span>
                         </div>
 
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tighter">
+                        <h2 className="text-4xl md:text-6xl font-black text-white mb-10 leading-[0.85] tracking-[-0.05em] font-display">
                             Your Secrets Are <br />
-                            <span className="text-gradient">Safe With Us.</span>
+                            <span className="text-gradient-premium">Safe With Us.</span>
                         </h2>
-                        <p className="text-base text-white/40 mb-10 leading-relaxed font-bold">
-                            Safety is our priority. Your identity remains hidden, and your conversations are encrypted. Talk freely without any fear.
+                        <p className="text-base text-slate-400 mb-6 leading-relaxed font-medium">
+                            Safety is our foundation. Your identity remains hidden, and your sessions are ghost-encrypted. Speak your heart without a trace.
+                        </p>
+                        <p className="text-xs text-red-500/70 font-black uppercase tracking-widest mb-14 border-l-2 border-red-500/30 pl-4 py-1">
+                            Disclaimer: Any actions taken post-call are your sole responsibility. ListnerZone provides peer support, not professional medical advice.
                         </p>
 
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {features.map((feature, idx) => (
                                 <motion.div
                                     key={idx}
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.1 }}
-                                    className="flex items-center gap-4 glass-card p-4 border border-white/5"
+                                    transition={{ delay: idx * 0.1, duration: 0.8 }}
+                                    className="flex items-center gap-6 bg-white/5 backdrop-blur-3xl p-6 rounded-full border border-white/10 hover:border-primary/30 transition-all duration-700 group shadow-lg"
                                 >
-                                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                                        <feature.icon className="w-5 h-5 text-primary" />
+                                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:rotate-12 transition-all duration-700">
+                                        <feature.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
                                     </div>
-                                    <span className="text-sm font-black text-white/80 uppercase tracking-tight">{feature.title}</span>
+                                    <span className="text-base font-black text-white/90 tracking-tight font-display">{feature.title}</span>
                                 </motion.div>
                             ))}
                         </div>
@@ -84,6 +88,7 @@ export default function SafetyPrivacy() {
                                 src="/images/privacy_shield_3d_1770535586080.png"
                                 alt="Privacy Shield"
                                 fill
+                                sizes="(max-width: 768px) 100vw, 400px"
                                 className="object-contain drop-shadow-2xl animate-float-premium"
                             />
                         </div>

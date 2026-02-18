@@ -38,12 +38,13 @@ export default function LegalLayout({ children, title }: { children: React.React
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="prose prose-invert prose-sm md:prose-base max-w-none 
-                        prose-headings:text-white prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tight 
-                        prose-p:text-white/50 prose-p:font-bold prose-p:leading-relaxed 
-                        prose-ul:text-white/50 prose-li:marker:text-primary prose-li:font-bold
-                        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                        glass-card p-10 md:p-16 border-white/5 bg-white/[0.02]"
+                    className="glass-card p-10 md:p-16 border-white/5 bg-white/2
+                        [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-white [&_h2]:uppercase [&_h2]:tracking-tight [&_h2]:mt-12 [&_h2]:mb-6 first:[&_h2]:mt-0
+                        [&_p]:text-white/50 [&_p]:font-bold [&_p]:leading-relaxed [&_p]:mb-4
+                        [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-4 [&_ul]:my-6 [&_ul]:text-white/50
+                        [&_li]:marker:text-primary [&_li]:font-bold
+                        [&_strong]:text-primary [&_strong]:font-black
+                        [&_a]:text-primary [&_a]:no-underline hover:[&_a]:underline"
                 >
                     {children}
                 </motion.article>

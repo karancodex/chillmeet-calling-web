@@ -1,10 +1,11 @@
 import LegalLayout from "@/components/ui/LegalLayout";
+import Link from "next/link";
 
 const content = (
     <>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
         <h2>Our Refund Policy</h2>
-        <p>ChillMeet strives to provide quality connection. We understand things don't always go as planned.</p>
+        <p>ListnerZone strives to provide quality connection. We understand things don't always go as planned.</p>
 
         <h2>Eligible Refunds</h2>
         <ul>
@@ -22,7 +23,7 @@ const content = (
         </ul>
 
         <h2>How to Request</h2>
-        <p>Contact support@chillmeet.com within 24 hours of the incident.</p>
+        <p>Please <Link href="/contact" className="text-primary hover:underline">contact us via our official form</Link> within 24 hours of the incident.</p>
     </>
 );
 

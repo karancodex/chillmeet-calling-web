@@ -42,42 +42,42 @@ export default function HowItWorks() {
 
             <div className="container mx-auto px-6">
                 <motion.div
-                    className="text-center mb-20"
+                    className="text-center mb-24"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-tight leading-tight">
-                        The Path To <span className="text-gradient">Sukun.</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-[-0.03em] leading-tight font-display">
+                        The Path To <span className="text-gradient-premium">Peace.</span>
                     </h2>
-                    <p className="text-[10px] text-white/40 font-black uppercase tracking-[0.4em] max-w-xl mx-auto">Three simple steps to speak your truth anonymously.</p>
+                    <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.4em] max-w-xl mx-auto">Three simple steps to speak your truth anonymously.</p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
                     {steps.map((step, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.15 }}
-                            className="glass-card p-12 flex flex-col items-center text-center relative group overflow-hidden border border-white/5"
+                            transition={{ delay: index * 0.15, duration: 0.8 }}
+                            className="bg-slate-900/40 backdrop-blur-3xl p-14 flex flex-col items-center text-center relative group overflow-hidden border border-white/5 rounded-[4rem] transition-all duration-700 hover:border-white/10 shadow-2xl"
                         >
                             {/* Step Number Backdrop */}
-                            <div className="absolute -top-6 -right-6 text-[120px] font-black italic text-white/[0.02] group-hover:text-primary/[0.05] transition-colors leading-none pointer-events-none">
+                            <div className="absolute -top-12 -right-12 text-[200px] font-black italic text-white/2 group-hover:text-primary/4 transition-all duration-1000 leading-none pointer-events-none font-display">
                                 {index + 1}
                             </div>
 
-                            <div className={`w-20 h-20 rounded-3xl ${step.glow} flex items-center justify-center border border-white/5 mb-10 group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-700`}>
-                                <step.icon className={`w-10 h-10 ${step.color}`} />
+                            <div className={`w-28 h-28 organic-shape-1 ${step.glow} flex items-center justify-center border border-white/5 mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-xl`}>
+                                <step.icon className={`w-12 h-12 ${step.color}`} />
                             </div>
 
-                            <h3 className="text-xl font-black mb-6 text-white tracking-tight group-hover:text-primary transition-colors">{step.title}</h3>
-                            <p className="text-white/40 leading-relaxed text-sm font-bold uppercase tracking-wide">
+                            <h3 className="text-xl font-black mb-6 text-white tracking-tight group-hover:text-primary transition-colors font-display">{step.title}</h3>
+                            <p className="text-slate-500 leading-relaxed text-[11px] font-bold uppercase tracking-[0.2em] max-w-[200px]">
                                 {step.desc}
                             </p>
 
-                            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                            <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000" />
                         </motion.div>
                     ))}
                 </div>

@@ -1,20 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Lock, EyeOff, UserCheck, ShieldCheck, HeartPulse } from "lucide-react";
+import { Shield, EyeOff, UserCheck, ShieldCheck, HeartPulse } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import Link from "next/link";
 
 const guidelines = [
     {
         icon: Shield,
         title: "Anonymous Presence",
         desc: "We never ask for your real name or personal identity. You are always in control of what you share."
-    },
-    {
-        icon: Lock,
-        title: "Zero Recordings",
-        desc: "Conversations are live and temporary. We do not record or store any audio from your calls."
     },
     {
         icon: EyeOff,
@@ -54,12 +50,12 @@ export default function SafetyPage() {
                         <span>Trust & Safety</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
                         Your Safety Is <br /><span className="text-gradient">Our Foundation.</span>
                     </h1>
 
                     <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
-                        We've built ChillMeet from the ground up to be a completely secure sanctuary.
+                        We've built ListnerZone from the ground up to be a completely secure sanctuary.
                     </p>
                 </motion.div>
 
@@ -70,7 +66,7 @@ export default function SafetyPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className="glass-card p-10 border border-white/5 hover:bg-white/[0.03] transition-all group"
+                            className="glass-card p-10 border border-white/5 hover:bg-white/3 transition-all group"
                         >
                             <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 mb-8 group-hover:scale-110 transition-transform">
                                 <item.icon className="w-6 h-6 text-primary" />
@@ -83,15 +79,15 @@ export default function SafetyPage() {
                     ))}
                 </div>
 
-                <div className="max-w-4xl mx-auto p-12 md:p-20 rounded-[3rem] bg-gradient-to-br from-primary/10 via-transparent to-accent/10 border border-white/5 text-center relative overflow-hidden">
+                <div className="max-w-4xl mx-auto p-12 md:p-20 rounded-[3rem] bg-linear-to-br from-primary/10 via-transparent to-accent/10 border border-white/5 text-center relative overflow-hidden">
                     <div className="relative z-10">
-                        <h2 className="text-2xl md:text-4xl font-black text-white mb-6 uppercase tracking-tight">Still have questions?</h2>
+                        <h2 className="text-xl md:text-3xl font-black text-white mb-6 uppercase tracking-tight">Still have questions?</h2>
                         <p className="text-white/40 text-sm font-bold uppercase tracking-widest mb-10">
                             Our safety team is always available to address your concerns.
                         </p>
-                        <button className="px-10 py-5 bg-white text-dark font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all">
+                        <Link href="/contact" className="inline-block px-10 py-5 bg-white text-dark font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all">
                             Contact Safety Team
-                        </button>
+                        </Link>
                     </div>
                     <div className="absolute -left-20 -top-20 w-80 h-80 bg-primary/5 blur-[120px] rounded-full" />
                     <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-accent/5 blur-[120px] rounded-full" />
