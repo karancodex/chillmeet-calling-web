@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SukunLogo({ className = "w-10 h-10", color = "white" }: { className?: string, color?: string }) {
+export default function ListnerZoneLogo({ className = "w-10 h-10", color = "white" }: { className?: string, color?: string }) {
     return (
         <svg
             viewBox="0 0 100 100"

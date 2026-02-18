@@ -22,18 +22,18 @@ export default function CrisisPage() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="glass-card p-12 md:p-20 border border-red-500/20 bg-red-500/[0.02] text-center max-w-4xl mx-auto mb-16"
+                    className="glass-card p-12 md:p-20 border border-red-500/20 bg-red-500/2 text-center max-w-4xl mx-auto mb-16"
                 >
                     <div className="w-20 h-20 rounded-2xl bg-red-500/10 flex items-center justify-center border border-red-500/20 mx-auto mb-10">
                         <AlertTriangle className="w-10 h-10 text-red-500" />
                     </div>
 
-                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
+                    <h1 className="text-2xl md:text-4xl font-black text-white mb-6 uppercase tracking-tighter">
                         Immediate <span className="text-red-500">Crisis Support.</span>
                     </h1>
 
-                    <p className="text-white/60 text-base font-bold leading-relaxed mb-10 max-w-2xl mx-auto">
-                        If you are experiencing suicidal thoughts or are in immediate danger, Sukun is not the right place for you right now. <span className="text-red-500">Please reach out to professional emergency services immediately.</span>
+                    <p className="text-sm text-white/60 font-bold leading-relaxed mb-10 max-w-2xl mx-auto">
+                        If you are experiencing suicidal thoughts or are in immediate danger, ListnerZone is not the right place for you right now. <span className="text-red-500">Please reach out to professional emergency services immediately.</span>
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

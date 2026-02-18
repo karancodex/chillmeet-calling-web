@@ -13,22 +13,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sukun.life'),
-  title: "Sukun - Anonymous Emotional Support & Active Listening",
+  metadataBase: new URL('https://listnerzone.in'),
+  title: "ListnerZone - Anonymous Emotional Support & Active Listening",
   description: "A digital sanctuary for anonymous emotional support. Connect with compassionate listeners who understand, without judgment. Speak your truth and find your inner peace.",
-  keywords: ["emotional support", "anonymous chat", "active listening", "mental wellness", "sukun", "peace of mind", "talk to someone"],
-  authors: [{ name: "Sukun Team" }],
+  keywords: ["emotional support", "anonymous chat", "active listening", "mental wellness", "listnerzone", "peace of mind", "talk to someone"],
+  authors: [{ name: "ListnerZone Team" }],
   openGraph: {
-    title: "Sukun - Find Your Inner Peace",
+    title: "ListnerZone - Find Your Inner Peace",
     description: "Connect with compassionate listeners anonymously. Your safe harbor for emotional support.",
-    url: "https://sukun.life",
-    siteName: "Sukun",
+    url: "https://listnerzone.in",
+    siteName: "ListnerZone",
     images: [
       {
         url: "/images/hero_banner_premium.png",
         width: 1200,
         height: 630,
-        alt: "Sukun - Find Your Inner Peace",
+        alt: "ListnerZone - Find Your Inner Peace",
       },
     ],
     locale: "en_IN",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sukun - Find Your Inner Peace",
+    title: "ListnerZone - Find Your Inner Peace",
     description: "Anonymous emotional support and active listening.",
     images: ["/images/hero_banner_premium.png"],
   },

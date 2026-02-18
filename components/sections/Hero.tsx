@@ -40,14 +40,14 @@ export default function Hero() {
         <section ref={ref} className="relative min-h-[85vh] w-full flex items-center justify-center overflow-hidden pt-24 pb-16 bg-dark">
             {/* Base Dark Background Layer */}
             <Image
-                src="/images/sukun_zen_sanctuary_3d_hero_1770800045704.png"
-                alt="Sukun 3D Sanctuary"
+                src="/images/listnerzone_hero.png"
+                alt="ListnerZone 3D Sanctuary"
                 fill
                 className="object-cover opacity-60 scale-100"
                 style={{ objectPosition: 'center center' }}
                 priority
             />
-            <div className="absolute inset-0 bg-dark/60 -z-[70]" />
+            <div className="absolute inset-0 bg-dark/60 -z-70" />
 
             {/* Cinematic Overlay */}
             <motion.div
@@ -55,8 +55,8 @@ export default function Hero() {
                 className="absolute inset-0 w-full h-full -z-50"
             >
                 <Image
-                    src="/images/sukun_zen_sanctuary_3d_hero_1770800045704.png"
-                    alt="Sukun 3D Sanctuary"
+                    src="/images/listnerzone_hero.png"
+                    alt="ListnerZone 3D Sanctuary"
                     fill
                     className="object-cover opacity-60"
                     style={{ objectPosition: 'center center' }}
@@ -118,7 +118,7 @@ export default function Hero() {
                             <div>
                                 <h4 className="text-red-500 text-xs font-black uppercase tracking-[0.3em] mb-1">Safety & Legal Disclaimer</h4>
                                 <p className="text-[11px] md:text-xs text-white/70 font-bold leading-relaxed">
-                                    Sukun is for emotional support only, not crisis or medical services.
+                                    ListnerZone is for emotional support only, not crisis or medical services.
                                     <span className="text-white block mt-1 font-black underline decoration-red-500/50">
                                         Any actions taken following a session are the sole responsibility of the user.
                                     </span>
@@ -128,7 +128,7 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.h1
-                        className="text-5xl md:text-8xl font-black mb-8 tracking-[-0.04em] text-white leading-[0.95] font-display"
+                        className="text-4xl md:text-6xl font-black mb-8 tracking-[-0.04em] text-white leading-[0.95] font-display"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -140,7 +140,7 @@ export default function Hero() {
                     </motion.h1>
 
                     <motion.div
-                        className="flex flex-col md:flex-row items-center justify-center gap-3 text-lg md:text-3xl text-white/60 mb-12 font-display font-medium leading-relaxed tracking-tight h-16"
+                        className="flex flex-col md:flex-row items-center justify-center gap-3 text-base md:text-2xl text-white/60 mb-12 font-display font-medium leading-relaxed tracking-tight h-14"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6, duration: 1 }}

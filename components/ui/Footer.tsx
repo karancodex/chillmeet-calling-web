@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
-import SukunLogo from "./SukunLogo";
+import ListnerZoneLogo from "./ListnerZoneLogo";
 import Image from "next/image";
 
 export default function Footer() {
@@ -22,12 +22,12 @@ export default function Footer() {
                     <div className="col-span-1 md:col-span-1 text-white">
                         <Link href="/" className="flex items-center gap-2 mb-6 group">
                             <div className="relative w-8 h-8 transform group-hover:rotate-12 transition-transform">
-                                <SukunLogo className="w-full h-full" color="white" />
+                                <ListnerZoneLogo className="w-full h-full" color="white" />
                             </div>
-                            <span className="text-xl font-black bg-clip-text text-transparent bg-linear-to-r from-primary via-secondary to-accent tracking-tighter">Sukun</span>
+                            <span className="text-xl font-black bg-clip-text text-transparent bg-linear-to-r from-primary via-secondary to-accent tracking-tighter">ListnerZone</span>
                         </Link>
                         <p className="text-slate-400 text-xs font-bold leading-relaxed mb-8 max-w-xs">
-                            A sanctuary for your thoughts. Talk anonymously, listen empathetically, and find your sukun.
+                            A sanctuary for your thoughts. Talk anonymously, listen empathetically, and find your peace.
                         </p>
                     </div>
 
@@ -61,7 +61,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-[9px] text-slate-500 font-black uppercase tracking-[0.4em]">
-                    <p>&copy; {new Date().getFullYear()} SUKUN. Crafted For Peace.</p>
+                    <p>&copy; {new Date().getFullYear()} LISTNERZONE. Crafted For Peace.</p>
                     <p className="mt-4 md:mt-0 italic">Secure. Private. Empathetic.</p>
                 </div>
             </div>

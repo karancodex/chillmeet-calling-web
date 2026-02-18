@@ -11,7 +11,7 @@ import Link from "next/link";
 const faqs = [
     {
         question: "Is this therapy or counseling?",
-        answer: "No. Sukun is an emotional support platform connecting you with empathetic peer listeners, not licensed therapists. We are for casual venting, stress relief, and human connection. If you have a serious medical or mental health condition, please seek professional assistance."
+        answer: "No. ListnerZone is an emotional support platform connecting you with empathetic peer listeners, not licensed therapists. We are for casual venting, stress relief, and human connection. If you have a serious medical or mental health condition, please seek professional assistance."
     },
     {
         question: "How anonymous is the service?",
@@ -19,7 +19,7 @@ const faqs = [
     },
     {
         question: "What if I'm not happy with my session?",
-        answer: "Sukun sessions are non-refundable. Please note that our team consists of empathetic listeners who provide a safe space for you to be heard; we are not professional therapists or medical experts."
+        answer: "ListnerZone sessions are non-refundable. Please note that our team consists of empathetic listeners who provide a safe space for you to be heard; we are not professional therapists or medical experts."
     },
     {
         question: "Do I need an account to call?",

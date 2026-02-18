@@ -34,7 +34,7 @@ export default function ContactPage() {
                         from_name: formData.name,
                         from_email: formData.email,
                         message: formData.message,
-                        to_name: "Sukun Support",
+                        to_name: "ListnerZone Support",
                     },
                     PUBLIC_KEY
                 );

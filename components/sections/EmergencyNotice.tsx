@@ -12,9 +12,9 @@ export default function EmergencyNotice() {
                 <div>
                     <h3 className="text-xl font-black text-red-500 mb-4 uppercase tracking-[0.3em] font-display">Legal & Safety Notice</h3>
                     <p className="text-sm text-white/50 max-w-3xl font-bold leading-relaxed mb-6">
-                        Sukun is an emotional support platform and does not provide therapy, counseling, or medical services.
+                        ListnerZone is an emotional support platform and does not provide therapy, counseling, or medical services.
                         <span className="text-white block mt-4 font-black text-base uppercase tracking-tight">
-                            Any actions taken following a call are the sole responsibility of the user. Sukun and its listeners are not liable for any post-session outcomes.
+                            Any actions taken following a call are the sole responsibility of the user. ListnerZone and its listeners are not liable for any post-session outcomes.
                         </span>
                     </p>
                     <p className="text-xs text-red-500/60 font-black uppercase tracking-widest">

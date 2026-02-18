@@ -100,9 +100,9 @@ export default function Pricing() {
             key: RAZORPAY_KEY,
             amount: amount * 100, // in paisa
             currency: "INR",
-            name: "Sukun",
+            name: "ListnerZone",
             description: `${isCustom ? 'Custom' : ''} Voice Session (${planId})`,
-            image: "https://sukun.life/images/sukun_logo.png",
+            image: "https://listnerzone.in/images/listnerzone_logo.png",
             handler: function (response: any) {
                 setLoading(null);
                 setLastPaymentId(response.razorpay_payment_id);
@@ -141,7 +141,7 @@ export default function Pricing() {
                 payment_id: paymentId,
                 duration: `${formData.duration} mins`,
                 scheduled_time: `${formData.date} ${formData.time}`,
-                site_name: "Sukun"
+                site_name: "ListnerZone"
             };
 
             if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
@@ -198,11 +198,11 @@ export default function Pricing() {
                             <CreditCard className="w-3 h-3" />
                             <span>Pricing & Sessions</span>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-black mb-6 text-white tracking-tight font-display leading-[1.1]">
+                        <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-tight font-display leading-[1.1]">
                             Invest In Your <br />
                             <span className="text-gradient-premium">Peace Of Mind.</span>
                         </h2>
-                        <p className="text-base text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-sm text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
                             Choose a session that fits your heart. Every call is 100% private, anonymous, and focused entirely on you.
                         </p>
                     </motion.div>
@@ -234,11 +234,11 @@ export default function Pricing() {
                                         <plan.icon className="w-10 h-10 text-white" />
                                     </div>
 
-                                    <h3 className="text-3xl font-black text-white mb-2 font-display">{plan.name}</h3>
+                                    <h3 className="text-2xl font-black text-white mb-2 font-display">{plan.name}</h3>
                                     <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.3em] mb-8">{plan.duration}</p>
 
                                     <div className="flex items-baseline gap-1 mb-10">
-                                        <span className="text-6xl font-black text-white tracking-tighter font-display">
+                                        <span className="text-5xl font-black text-white tracking-tighter font-display">
                                             {typeof plan.price === 'number' ? `₹${plan.price}` : plan.price}
                                         </span>
                                         {typeof plan.price === 'number' && (
@@ -320,7 +320,7 @@ export default function Pricing() {
                                         </button>
 
                                         <div className="mb-10 text-center md:text-left">
-                                            <h3 className="text-3xl font-black text-white mb-2 tracking-tighter font-display">{selectedPlan?.name || "Secure Booking"}</h3>
+                                            <h3 className="text-2xl font-black text-white mb-2 tracking-tighter font-display">{selectedPlan?.name || "Secure Booking"}</h3>
                                             <p className="text-slate-400 text-sm font-medium">Schedule your {selectedPlan?.duration.toLowerCase()} session at your convenience.</p>
                                         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SukunLogo from "../ui/SukunLogo";
+import ListnerZoneLogo from "../ui/ListnerZoneLogo";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,11 +30,11 @@ export default function FinalCTA() {
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[130px] rounded-full -z-10 animate-pulse-slow" />
 
                     <div className="relative w-20 h-20 mx-auto mb-12 transform hover:rotate-12 transition-transform duration-1000">
-                        <SukunLogo className="w-full h-full" color="white" />
+                        <ListnerZoneLogo className="w-full h-full" color="white" />
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-black mb-10 text-white leading-[0.9] tracking-[-0.04em] font-display">
-                        Your Journey To Sukun <br />
+                    <h2 className="text-3xl md:text-5xl font-black mb-10 text-white leading-[0.9] tracking-[-0.04em] font-display">
+                        Your Journey To Peace <br />
                         <span className="text-gradient-premium">Starts With A Hello.</span>
                     </h2>
 

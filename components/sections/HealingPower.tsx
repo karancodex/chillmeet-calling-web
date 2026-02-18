@@ -55,12 +55,12 @@ export default function HealingPower() {
                             <span>Transformative Support</span>
                         </div>
 
-                        <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-[0.95] tracking-[-0.04em] font-display">
+                        <h2 className="text-3xl md:text-5xl font-black text-white mb-8 leading-[0.95] tracking-[-0.04em] font-display">
                             Mending Hearts, <br />
                             <span className="text-gradient-premium">One Breath At A Time.</span>
                         </h2>
 
-                        <p className="text-base text-slate-400 mb-10 leading-relaxed font-medium max-w-lg">
+                        <p className="text-sm text-slate-400 mb-10 leading-relaxed font-medium max-w-lg">
                             Sometimes, the heaviest burdens are the ones we carry in silence. Release that weight. Whether you're navigating heartbreak, anxiety, or transition, a kind voice is waiting to bridge the distance.
                         </p>
 

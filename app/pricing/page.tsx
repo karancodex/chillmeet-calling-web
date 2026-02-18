@@ -29,7 +29,7 @@ export default function PricingPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-4xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
                         Investment In <span className="text-gradient">Peace.</span>
                     </h1>
                     <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
@@ -72,9 +72,9 @@ export default function PricingPage() {
                                     <Zap className="w-8 h-8 text-primary" />
                                 </div>
 
-                                <h3 className="text-2xl md:text-4xl font-black text-white mb-4 uppercase tracking-tight">{plan.name}</h3>
+                                <h3 className="text-xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{plan.name}</h3>
                                 <div className="flex items-baseline gap-2 mb-10">
-                                    <span className="text-6xl md:text-8xl font-black text-white">₹{plan.price}</span>
+                                    <span className="text-5xl md:text-6xl font-black text-white">₹{plan.price}</span>
                                     <span className="text-xl text-white/20 font-black uppercase">{plan.unit}</span>
                                 </div>
 
@@ -82,7 +82,7 @@ export default function PricingPage() {
 
                                 <div className="w-full max-w-md space-y-4">
                                     <a
-                                        href={`upi://pay?pa=${upiId}&pn=Sukun&am=${plan.price}&cu=INR&tn=Sukun ${plan.name} Subscription`}
+                                        href={`upi://pay?pa=${upiId}&pn=ListnerZone&am=${plan.price}&cu=INR&tn=ListnerZone ${plan.name} Subscription`}
                                         className="w-full block px-16 py-6 bg-linear-to-r from-primary to-accent text-white font-black text-xl rounded-2xl transition-all shadow-2xl shadow-primary/20 hover:shadow-primary/40 transform hover:-translate-y-1 active:scale-95 text-center"
                                     >
                                         Subscribe with UPI

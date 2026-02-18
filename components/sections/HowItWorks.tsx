@@ -47,8 +47,8 @@ export default function HowItWorks() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-4xl md:text-6xl font-black mb-6 text-white tracking-[-0.03em] leading-tight font-display">
-                        The Path To <span className="text-gradient-premium">Sukun.</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-[-0.03em] leading-tight font-display">
+                        The Path To <span className="text-gradient-premium">Peace.</span>
                     </h2>
                     <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.4em] max-w-xl mx-auto">Three simple steps to speak your truth anonymously.</p>
                 </motion.div>
@@ -72,7 +72,7 @@ export default function HowItWorks() {
                                 <step.icon className={`w-12 h-12 ${step.color}`} />
                             </div>
 
-                            <h3 className="text-2xl font-black mb-6 text-white tracking-tight group-hover:text-primary transition-colors font-display">{step.title}</h3>
+                            <h3 className="text-xl font-black mb-6 text-white tracking-tight group-hover:text-primary transition-colors font-display">{step.title}</h3>
                             <p className="text-slate-500 leading-relaxed text-[11px] font-bold uppercase tracking-[0.2em] max-w-[200px]">
                                 {step.desc}
                             </p>

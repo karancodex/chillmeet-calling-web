@@ -46,15 +46,15 @@ export default function SafetyPrivacy() {
                             <span>Absolute Privacy</span>
                         </div>
 
-                        <h2 className="text-5xl md:text-[5.5rem] font-black text-white mb-10 leading-[0.85] tracking-[-0.05em] font-display">
+                        <h2 className="text-4xl md:text-6xl font-black text-white mb-10 leading-[0.85] tracking-[-0.05em] font-display">
                             Your Secrets Are <br />
                             <span className="text-gradient-premium">Safe With Us.</span>
                         </h2>
-                        <p className="text-lg text-slate-400 mb-6 leading-relaxed font-medium">
+                        <p className="text-base text-slate-400 mb-6 leading-relaxed font-medium">
                             Safety is our foundation. Your identity remains hidden, and your sessions are ghost-encrypted. Speak your heart without a trace.
                         </p>
                         <p className="text-xs text-red-500/70 font-black uppercase tracking-widest mb-14 border-l-2 border-red-500/30 pl-4 py-1">
-                            Disclaimer: Any actions taken post-call are your sole responsibility. Sukun provides peer support, not professional medical advice.
+                            Disclaimer: Any actions taken post-call are your sole responsibility. ListnerZone provides peer support, not professional medical advice.
                         </p>
 
                         <div className="space-y-6">
@@ -70,7 +70,7 @@ export default function SafetyPrivacy() {
                                     <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:rotate-12 transition-all duration-700">
                                         <feature.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
                                     </div>
-                                    <span className="text-lg font-black text-white/90 tracking-tight font-display">{feature.title}</span>
+                                    <span className="text-base font-black text-white/90 tracking-tight font-display">{feature.title}</span>
                                 </motion.div>
                             ))}
                         </div>

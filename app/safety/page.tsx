@@ -50,12 +50,12 @@ export default function SafetyPage() {
                         <span>Trust & Safety</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
                         Your Safety Is <br /><span className="text-gradient">Our Foundation.</span>
                     </h1>
 
                     <p className="text-white/40 text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
-                        We've built Sukun from the ground up to be a completely secure sanctuary.
+                        We've built ListnerZone from the ground up to be a completely secure sanctuary.
                     </p>
                 </motion.div>
 
@@ -81,7 +81,7 @@ export default function SafetyPage() {
 
                 <div className="max-w-4xl mx-auto p-12 md:p-20 rounded-[3rem] bg-linear-to-br from-primary/10 via-transparent to-accent/10 border border-white/5 text-center relative overflow-hidden">
                     <div className="relative z-10">
-                        <h2 className="text-2xl md:text-4xl font-black text-white mb-6 uppercase tracking-tight">Still have questions?</h2>
+                        <h2 className="text-xl md:text-3xl font-black text-white mb-6 uppercase tracking-tight">Still have questions?</h2>
                         <p className="text-white/40 text-sm font-bold uppercase tracking-widest mb-10">
                             Our safety team is always available to address your concerns.
                         </p>

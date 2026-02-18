@@ -5,7 +5,7 @@ const content = (
     <>
         <p>Last updated: {new Date().toLocaleDateString()}</p>
         <h2>Our Refund Policy</h2>
-        <p>Sukun strives to provide quality connection. We understand things don't always go as planned.</p>
+        <p>ListnerZone strives to provide quality connection. We understand things don't always go as planned.</p>
 
         <h2>Eligible Refunds</h2>
         <ul>

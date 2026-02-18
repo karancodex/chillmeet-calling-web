@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Heart, Users, Shield, Target } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import SukunLogo from "@/components/ui/SukunLogo";
+import ListnerZoneLogo from "@/components/ui/ListnerZoneLogo";
 
 export default function AboutPage() {
     return (
@@ -17,8 +17,8 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-20"
                 >
-                    <h1 className="text-4xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter font-display">
-                        The Story Of <span className="text-gradient-premium">Sukun.</span>
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter font-display">
+                        The Story Of <span className="text-gradient-premium">ListnerZone.</span>
                     </h1>
                     <p className="text-slate-500 text-xs font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
                         A digital sanctuary for souls in search of silence and simple human connection.
@@ -31,9 +31,9 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-2xl md:text-4xl font-black text-white mb-8 uppercase tracking-tight font-display">Our Mission</h2>
-                        <p className="text-slate-400 text-base font-bold leading-relaxed mb-8">
-                            Sukun was born out of a simple observation: in an increasingly connected world, true, unfiltered human connection is becoming a rarity. We are here to provide a sanctuary of empathetic listening, separate from clinical therapy.
+                        <h2 className="text-xl md:text-3xl font-black text-white mb-8 uppercase tracking-tight font-display">Our Mission</h2>
+                        <p className="text-slate-400 text-sm font-bold leading-relaxed mb-8">
+                            ListnerZone was born out of a simple observation: in an increasingly connected world, true, unfiltered human connection is becoming a rarity. We are here to provide a sanctuary of empathetic listening, separate from clinical therapy.
                         </p>
                         <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest leading-loose">
                             To create a safe, human-centric space where anyone—regardless of their story—can find a companion to listen, a heart to understand, and a voice to comfort.
@@ -48,7 +48,7 @@ export default function AboutPage() {
                     >
                         <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full animate-pulse" />
                         <div className="relative w-48 h-48 opacity-40 hover:opacity-100 transition-opacity duration-700">
-                            <SukunLogo className="w-full h-full" color="#7C6CFF" />
+                            <ListnerZoneLogo className="w-full h-full" color="#7C6CFF" />
                         </div>
                     </motion.div>
                 </div>

@@ -5,7 +5,7 @@ import { Mic, Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import clsx from "clsx";
-import SukunLogo from "./SukunLogo";
+import ListnerZoneLogo from "./ListnerZoneLogo";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -31,10 +31,10 @@ export default function Navbar() {
                 {/* Logo Section */}
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-10 h-10 group-hover:scale-110 transition-transform duration-300">
-                        <SukunLogo className="w-full h-full" color="white" />
+                        <ListnerZoneLogo className="w-full h-full" color="white" />
                     </div>
                     <span className="text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-primary via-secondary to-accent tracking-tighter">
-                        Sukun
+                        ListnerZone
                     </span>
                 </Link>
 

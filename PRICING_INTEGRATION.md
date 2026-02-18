@@ -1,4 +1,4 @@
-# Sukun Pricing & Payment Integration Guide
+# ListnerZone Pricing & Payment Integration Guide
 
 This document outlines the implementation details for the Pricing section, including Razorpay and EmailJS integrations.
 
