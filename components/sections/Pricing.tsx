@@ -102,7 +102,7 @@ export default function Pricing() {
             currency: "INR",
             name: "ListnerZone",
             description: `${isCustom ? 'Custom' : ''} Voice Session (${planId})`,
-            image: "https://listnerzone.in/images/listnerzone_logo.png",
+            image: "https://listnerzone.com/images/listnerzone_logo.png",
             handler: function (response: any) {
                 setLoading(null);
                 setLastPaymentId(response.razorpay_payment_id);
@@ -198,7 +198,7 @@ export default function Pricing() {
                             <CreditCard className="w-3 h-3" />
                             <span>Pricing & Sessions</span>
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-tight font-display leading-[1.1]">
+                        <h2 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 text-white tracking-tight font-display leading-[1.1]">
                             Invest In Your <br />
                             <span className="text-gradient-premium">Peace Of Mind.</span>
                         </h2>
@@ -207,7 +207,7 @@ export default function Pricing() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                         {plans.map((plan, idx) => (
                             <motion.div
                                 key={idx}
@@ -216,11 +216,11 @@ export default function Pricing() {
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1, duration: 0.8 }}
                                 className={clsx(
-                                    "relative group p-1 grad-border rounded-[3.5rem] transition-all duration-700",
-                                    plan.popular && "scale-105 z-10"
+                                    "relative group p-0.5 md:p-1 grad-border rounded-[2.5rem] md:rounded-[3.5rem] transition-all duration-700",
+                                    plan.popular && "scale-[1.02] md:scale-105 z-10"
                                 )}
                             >
-                                <div className="relative h-full bg-slate-900/40 backdrop-blur-3xl p-10 rounded-[3.3rem] flex flex-col items-center border border-white/5 group-hover:border-white/10 transition-colors">
+                                <div className="relative h-full bg-slate-900/40 backdrop-blur-3xl p-6 md:p-10 rounded-[2.3rem] md:rounded-[3.3rem] flex flex-col items-center border border-white/5 group-hover:border-white/10 transition-colors">
                                     {plan.popular && (
                                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-linear-to-r from-primary to-accent rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-[0_10px_30px_rgba(124,108,255,0.4)]">
                                             Best Value
@@ -228,17 +228,17 @@ export default function Pricing() {
                                     )}
 
                                     <div className={clsx(
-                                        "w-20 h-20 rounded-[2rem] bg-linear-to-br flex items-center justify-center mb-8 shadow-2xl group-hover:scale-110 transition-transform duration-700",
+                                        "w-16 h-16 md:w-20 md:h-20 rounded-3xl md:rounded-4xl bg-linear-to-br flex items-center justify-center mb-6 md:mb-8 shadow-2xl group-hover:scale-110 transition-transform duration-700",
                                         plan.color
                                     )}>
-                                        <plan.icon className="w-10 h-10 text-white" />
+                                        <plan.icon className="w-8 h-8 md:w-10 md:h-10 text-white" />
                                     </div>
 
-                                    <h3 className="text-2xl font-black text-white mb-2 font-display">{plan.name}</h3>
-                                    <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.3em] mb-8">{plan.duration}</p>
+                                    <h3 className="text-xl md:text-2xl font-black text-white mb-1 md:mb-2 font-display">{plan.name}</h3>
+                                    <p className="text-[9px] md:text-[10px] text-primary/60 font-black uppercase tracking-[0.3em] mb-6 md:mb-8">{plan.duration}</p>
 
-                                    <div className="flex items-baseline gap-1 mb-10">
-                                        <span className="text-5xl font-black text-white tracking-tighter font-display">
+                                    <div className="flex items-baseline gap-1 mb-8 md:mb-10">
+                                        <span className="text-3xl md:text-5xl font-black text-white tracking-tighter font-display">
                                             {typeof plan.price === 'number' ? `₹${plan.price}` : plan.price}
                                         </span>
                                         {typeof plan.price === 'number' && (
@@ -252,7 +252,7 @@ export default function Pricing() {
                                         onClick={() => handlePlanClick(plan.id)}
                                         disabled={!!loading}
                                         className={clsx(
-                                            "w-full py-6 rounded-full font-black uppercase tracking-[0.3em] text-[10px] transition-all duration-500 flex items-center justify-center gap-4 active:scale-95",
+                                            "w-full py-4 md:py-6 rounded-full font-black uppercase tracking-[0.3em] text-[9px] md:text-[10px] transition-all duration-500 flex items-center justify-center gap-4 active:scale-95",
                                             plan.popular
                                                 ? "bg-primary text-white shadow-[0_20px_40px_rgba(124,108,255,0.4)] hover:shadow-[0_25px_50px_rgba(124,108,255,0.6)] hover:bg-primary-dark"
                                                 : "bg-white/5 border border-white/10 text-white hover:bg-white/10"
@@ -349,7 +349,7 @@ export default function Pricing() {
                                                             required
                                                             type="date"
                                                             min={new Date().toISOString().split('T')[0]}
-                                                            className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white [color-scheme:dark]"
+                                                            className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white scheme-dark"
                                                             value={formData.date}
                                                             onChange={e => setFormData(prev => ({ ...prev, date: e.target.value }))}
                                                         />
@@ -362,7 +362,7 @@ export default function Pricing() {
                                                         <input
                                                             required
                                                             type="time"
-                                                            className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white [color-scheme:dark]"
+                                                            className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white scheme-dark"
                                                             value={formData.time}
                                                             onChange={e => setFormData(prev => ({ ...prev, time: e.target.value }))}
                                                         />

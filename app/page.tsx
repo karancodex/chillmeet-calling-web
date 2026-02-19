@@ -11,10 +11,12 @@ import SafetyPrivacy from "@/components/sections/SafetyPrivacy";
 import Pricing from "@/components/sections/Pricing";
 import EmergencyNotice from "@/components/sections/EmergencyNotice";
 import FinalCTA from "@/components/sections/FinalCTA";
+import StructuredData from "@/components/ui/StructuredData";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden selection:bg-primary/30 selection:text-white">
+      <StructuredData />
       <Navbar />
       <Hero />
       <div id="how-it-works"><HowItWorks /></div>

@@ -20,7 +20,7 @@ export default function FinalCTA() {
 
             <div className="container mx-auto px-6">
                 <motion.div
-                    className="bg-slate-900/60 backdrop-blur-3xl p-12 md:p-24 text-center relative overflow-hidden border border-white/5 rounded-[4rem] shadow-2xl"
+                    className="bg-slate-900/60 backdrop-blur-3xl p-8 md:p-24 text-center relative overflow-hidden border border-white/5 rounded-[3rem] md:rounded-[4rem] shadow-2xl"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -29,11 +29,11 @@ export default function FinalCTA() {
                     {/* Animated Glow in CTA */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[130px] rounded-full -z-10 animate-pulse-slow" />
 
-                    <div className="relative w-20 h-20 mx-auto mb-12 transform hover:rotate-12 transition-transform duration-1000">
+                    <div className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-10 md:mb-12 transform hover:rotate-12 transition-transform duration-1000">
                         <ListnerZoneLogo className="w-full h-full" color="white" />
                     </div>
 
-                    <h2 className="text-3xl md:text-5xl font-black mb-10 text-white leading-[0.9] tracking-[-0.04em] font-display">
+                    <h2 className="text-2xl md:text-5xl font-black mb-8 md:mb-10 text-white leading-[0.9] tracking-[-0.04em] font-display">
                         Your Journey To Peace <br />
                         <span className="text-gradient-premium">Starts With A Hello.</span>
                     </h2>
