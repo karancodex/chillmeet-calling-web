@@ -55,7 +55,7 @@ export default function HealingPower() {
                             <span>Transformative Support</span>
                         </div>
 
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-8 leading-[0.95] tracking-[-0.04em] font-display">
+                        <h2 className="text-2xl md:text-5xl font-black text-white mb-6 md:mb-8 leading-[0.95] tracking-[-0.04em] font-display">
                             Mending Hearts, <br />
                             <span className="text-gradient-premium">One Breath At A Time.</span>
                         </h2>

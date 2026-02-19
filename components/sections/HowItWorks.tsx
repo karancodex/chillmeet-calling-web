@@ -47,7 +47,7 @@ export default function HowItWorks() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-white tracking-[-0.03em] leading-tight font-display">
+                    <h2 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 text-white tracking-[-0.03em] leading-tight font-display">
                         The Path To <span className="text-gradient-premium">Peace.</span>
                     </h2>
                     <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.4em] max-w-xl mx-auto">Three simple steps to speak your truth anonymously.</p>
@@ -61,15 +61,15 @@ export default function HowItWorks() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15, duration: 0.8 }}
-                            className="bg-slate-900/40 backdrop-blur-3xl p-14 flex flex-col items-center text-center relative group overflow-hidden border border-white/5 rounded-[4rem] transition-all duration-700 hover:border-white/10 shadow-2xl"
+                            className="bg-slate-900/40 backdrop-blur-3xl p-8 md:p-14 flex flex-col items-center text-center relative group overflow-hidden border border-white/5 rounded-[3rem] md:rounded-[4rem] transition-all duration-700 hover:border-white/10 shadow-2xl"
                         >
                             {/* Step Number Backdrop */}
                             <div className="absolute -top-12 -right-12 text-[200px] font-black italic text-white/2 group-hover:text-primary/4 transition-all duration-1000 leading-none pointer-events-none font-display">
                                 {index + 1}
                             </div>
 
-                            <div className={`w-28 h-28 organic-shape-1 ${step.glow} flex items-center justify-center border border-white/5 mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-xl`}>
-                                <step.icon className={`w-12 h-12 ${step.color}`} />
+                            <div className={`w-20 h-20 md:w-28 md:h-28 organic-shape-1 ${step.glow} flex items-center justify-center border border-white/5 mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-xl`}>
+                                <step.icon className={`w-8 h-8 md:w-12 md:h-12 ${step.color}`} />
                             </div>
 
                             <h3 className="text-xl font-black mb-6 text-white tracking-tight group-hover:text-primary transition-colors font-display">{step.title}</h3>

@@ -1,0 +1,16 @@
+{
+  "name": "ListnerZone",
+  "short_name": "ListnerZone",
+  "description": "Anonymous Emotional Support & Active Listening",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05070A",
+  "theme_color": "#7C6CFF",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -100,8 +100,8 @@ export default function Hero() {
                         transition={{ delay: 0.2, duration: 0.8 }}
                         className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl mb-8 shadow-xl"
                     >
-                        <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
-                        <span className="text-[9px] font-black text-white/80 tracking-[0.3em] uppercase">Private • Secure • Empathetic</span>
+                        <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary animate-pulse" />
+                        <span className="text-[7px] md:text-[9px] font-black text-white/80 tracking-[0.2em] md:tracking-[0.3em] uppercase text-center">Private • Secure • Empathetic</span>
                     </motion.div>
 
                     {/* Integrated Safety Notice - Enhanced for Visibility */}
@@ -128,7 +128,7 @@ export default function Hero() {
                     </motion.div>
 
                     <motion.h1
-                        className="text-4xl md:text-6xl font-black mb-8 tracking-[-0.04em] text-white leading-[0.95] font-display"
+                        className="text-3xl md:text-6xl font-black mb-6 md:mb-8 tracking-[-0.04em] text-white leading-[0.95] font-display"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -140,24 +140,24 @@ export default function Hero() {
                     </motion.h1>
 
                     <motion.div
-                        className="flex flex-col md:flex-row items-center justify-center gap-3 text-base md:text-2xl text-white/60 mb-12 font-display font-medium leading-relaxed tracking-tight h-14"
+                        className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 text-sm md:text-2xl text-white/60 mb-10 md:mb-12 font-display font-medium leading-relaxed tracking-tight"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6, duration: 1 }}
                     >
                         <span>The support for</span>
-                        <div className="relative h-12 w-[300px] md:w-[450px] text-center md:text-left overflow-hidden">
+                        <div className="relative h-10 md:h-12 w-[240px] md:w-[450px] text-center md:text-left overflow-hidden">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={feelings[index].text}
-                                    initial={{ y: 30, opacity: 0, rotateX: -90 }}
+                                    initial={{ y: 20, opacity: 0, rotateX: -90 }}
                                     animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                                    exit={{ y: -30, opacity: 0, rotateX: 90 }}
+                                    exit={{ y: -20, opacity: 0, rotateX: 90 }}
                                     transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                                    className="absolute inset-0 flex items-center justify-center md:justify-start gap-4"
+                                    className="absolute inset-0 flex items-center justify-center md:justify-start gap-3 md:gap-4"
                                 >
-                                    <CurrentIcon className={clsx("w-8 h-8", feelings[index].color)} />
-                                    <span className={clsx("font-black uppercase tracking-[-0.03em]", feelings[index].color)}>
+                                    <CurrentIcon className={clsx("w-6 h-6 md:w-8 md:h-8", feelings[index].color)} />
+                                    <span className={clsx("font-black uppercase tracking-[-0.03em] text-sm md:text-2xl", feelings[index].color)}>
                                         {feelings[index].text}
                                     </span>
                                 </motion.div>
