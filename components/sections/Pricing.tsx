@@ -2,14 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Zap, Shield, Heart, Clock, X, Loader2, Sparkles, CreditCard, Mail, Calendar } from "lucide-react";
+import { Check, Zap, Shield, Heart, Clock, X, Loader2, Sparkles, CreditCard, Mail, Calendar, Phone, User } from "lucide-react";
 import clsx from "clsx";
 import Link from "next/link";
 import Script from "next/script";
 import emailjs from "@emailjs/browser";
+import { createCashfreeOrder, verifyCashfreePayment } from "@/app/actions/cashfree";
 
 // --- Configuration ---
 const RAZORPAY_KEY = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_YourKeyId";
+const PAYMENT_GATEWAY = process.env.NEXT_PUBLIC_PAYMENT_GATEWAY;
+const CASHFREE_MODE = process.env.NEXT_PUBLIC_CASHFREE_MODE;
+
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
@@ -71,7 +75,9 @@ export default function Pricing() {
 
     // Form state for custom session
     const [formData, setFormData] = useState({
+        name: "",
         email: "",
+        phone: "",
         date: "",
         time: "",
         duration: 30,
@@ -91,9 +97,106 @@ export default function Pricing() {
         }
     }, [formData.duration, selectedPlanId, selectedPlan]);
 
-    // --- Razorpay Integration ---
+
+
+    // Check for Payment Success from URL (Cashfree)
+    useEffect(() => {
+        const verifyPayment = async () => {
+            const query = new URLSearchParams(window.location.search);
+            const status = query.get('payment');
+            const orderId = query.get('order_id');
+
+            if (status === 'verify' && orderId) {
+                try {
+                    const isPaid = await verifyCashfreePayment(orderId);
+                    if (isPaid) {
+                        setLastPaymentId(orderId);
+
+                        // Retrieve stored booking details
+                        const storedDetails = localStorage.getItem('pendingBooking');
+                        if (storedDetails) {
+                            try {
+                                const details = JSON.parse(storedDetails);
+                                await handleSuccess(orderId, details.planId, details.amount, details.isCustom, details.formData);
+                            } catch (parseError) {
+                                console.error("Error parsing stored details", parseError);
+                                // Fallback success if details are corrupted, at least show success
+                                setShowSuccess(true);
+                                setTimeout(() => setShowSuccess(false), 5000);
+                            } finally {
+                                localStorage.removeItem('pendingBooking');
+                            }
+                        } else {
+                            setShowSuccess(true);
+                            setTimeout(() => setShowSuccess(false), 5000);
+                        }
+                    } else {
+                        alert('Payment verification failed. Please contact support if amount was deducted.');
+                    }
+                } catch (error) {
+                    console.error("Verification error", error);
+                    alert("An error occurred while verifying payment. Please contact support.");
+                } finally {
+                    // Clean URL
+                    const newUrl = window.location.pathname;
+                    window.history.replaceState({}, document.title, newUrl);
+                }
+            }
+        };
+
+        verifyPayment();
+    }, []);
+
+    // --- Payment Integration ---
     const handlePayment = (planId: string, amount: number, isCustom = false) => {
         if (!amount || amount <= 0) return;
+
+        if (PAYMENT_GATEWAY === 'CASHFREE') {
+            handleCashfreePayment(planId, amount, isCustom);
+        } else {
+            handleRazorpayPayment(planId, amount, isCustom);
+        }
+    };
+
+    const handleCashfreePayment = async (planId: string, amount: number, isCustom = false) => {
+        setLoading(planId);
+        try {
+            // Call Server Action directly
+            const data = await createCashfreeOrder(
+                amount,
+                formData.email,
+                formData.phone || "9999999999"
+            );
+
+            if (data.payment_session_id) {
+                // Store booking details before redirect
+                localStorage.setItem('pendingBooking', JSON.stringify({
+                    planId,
+                    amount,
+                    isCustom,
+                    formData
+                }));
+
+                const cashfree = new (window as any).Cashfree({
+                    mode: CASHFREE_MODE === 'PRODUCTION' ? 'production' : 'sandbox'
+                });
+                cashfree.checkout({
+                    paymentSessionId: data.payment_session_id,
+                    redirectTarget: "_self"
+                });
+            } else {
+                console.error("Cashfree init failed", data);
+                alert("Could not initiate payment. Please try again.");
+                setLoading(null);
+            }
+        } catch (error) {
+            console.error("Cashfree error", error);
+            setLoading(null);
+            alert("Payment Error: " + (error as Error).message);
+        }
+    };
+
+    const handleRazorpayPayment = (planId: string, amount: number, isCustom = false) => {
         setLoading(planId);
 
         const options = {
@@ -110,7 +213,7 @@ export default function Pricing() {
             },
             prefill: {
                 email: formData.email,
-                contact: ""
+                contact: formData.phone || ""
             },
             theme: {
                 color: "#7C6CFF"
@@ -127,20 +230,26 @@ export default function Pricing() {
     };
 
     // --- Success & Email Handling ---
-    const handleSuccess = async (paymentId: string, planId: string, amount: number, isCustom = false) => {
+    const handleSuccess = async (paymentId: string, planId: string, amount: number, isCustom = false, explicitFormData?: any) => {
+        // 1. Always show success content immediately so user knows payment worked
         setShowSuccess(true);
-        setTimeout(() => setShowSuccess(false), 5000);
+        setTimeout(() => setShowSuccess(false), 6000);
 
-        // Send confirmation email
+        const dataToUse = explicitFormData || formData;
+        const currentPlan = plans.find(p => p.id === planId);
+
+        // 2. Attempt to send email
         try {
             const templateParams = {
-                to_email: formData.email,
-                user_email: formData.email,
-                plan_name: selectedPlan?.name || planId,
+                to_email: dataToUse.email,
+                to_name: dataToUse.name,
+                user_email: dataToUse.email,
+                user_phone: dataToUse.phone || "Not provided",
+                plan_name: currentPlan?.name || planId,
                 amount: amount,
                 payment_id: paymentId,
-                duration: `${formData.duration} mins`,
-                scheduled_time: `${formData.date} ${formData.time}`,
+                duration: `${dataToUse.duration} mins`,
+                scheduled_time: `${dataToUse.date} ${dataToUse.time}`,
                 site_name: "ListnerZone"
             };
 
@@ -151,9 +260,13 @@ export default function Pricing() {
                     templateParams,
                     EMAILJS_PUBLIC_KEY
                 );
+                console.log("Email sent successfully");
+            } else {
+                console.warn("EmailJS credentials missing, skipping email.");
             }
         } catch (error) {
-            console.error("Email share failed", error);
+            // 3. Log email error but do NOT alert user, as payment was successful
+            console.error("Email sending failed:", error);
         }
     };
 
@@ -164,10 +277,25 @@ export default function Pricing() {
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.email || !formData.date || !formData.time) {
-            alert("Please fill all fields");
+
+        // Validation
+        if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.time) {
+            alert("Please fill all fields to proceed.");
             return;
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(formData.phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
+        }
+
         setIsModalOpen(false);
         const planName = selectedPlan?.name || "Session";
         handlePayment(`${planName}_${formData.duration}min`, formData.price, selectedPlanId === 'plan_custom');
@@ -180,6 +308,7 @@ export default function Pricing() {
 
             <div className="py-32 relative overflow-hidden">
                 <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+                <Script src="https://sdk.cashfree.com/js/v3/cashfree.js" />
 
                 {/* Refined Ambient Background */}
                 <div className="absolute inset-0 pointer-events-none -z-10">
@@ -326,23 +455,58 @@ export default function Pricing() {
 
                                         <form onSubmit={handleFormSubmit} className="space-y-6">
                                             <div className="space-y-3">
-                                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Email Address</label>
+                                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Full Name *</label>
+                                                <div className="relative">
+                                                    <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                                    <input
+                                                        required
+                                                        type="text"
+                                                        placeholder="Enter your name"
+                                                        className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white placeholder:text-slate-600"
+                                                        value={formData.name}
+                                                        onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Email *</label>
                                                 <div className="relative">
                                                     <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                                                     <input
                                                         required
                                                         type="email"
                                                         placeholder="Enter your email"
-                                                        className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white"
+                                                        className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white placeholder:text-slate-600"
                                                         value={formData.email}
                                                         onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
                                                     />
                                                 </div>
                                             </div>
 
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Phone Number *</label>
+                                                <div className="relative">
+                                                    <Phone className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                                    <input
+                                                        required
+                                                        type="tel"
+                                                        placeholder="10-digit mobile number"
+                                                        maxLength={10}
+                                                        pattern="[0-9]{10}"
+                                                        className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary/50 focus:bg-white/10 outline-none transition-all text-sm font-bold text-white placeholder:text-slate-600"
+                                                        value={formData.phone}
+                                                        onChange={e => {
+                                                            const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                                                            setFormData(prev => ({ ...prev, phone: val }));
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+
                                             <div className="grid grid-cols-2 gap-5">
                                                 <div className="space-y-3">
-                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Date</label>
+                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Date *</label>
                                                     <div className="relative">
                                                         <Calendar className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
                                                         <input
@@ -356,7 +520,7 @@ export default function Pricing() {
                                                     </div>
                                                 </div>
                                                 <div className="space-y-3">
-                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Time</label>
+                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 ml-1">Time *</label>
                                                     <div className="relative">
                                                         <Clock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
                                                         <input
