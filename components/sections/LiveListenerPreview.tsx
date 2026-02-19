@@ -18,6 +18,24 @@ const listeners = [
         status: "Available now",
         // rating: 4.9
     },
+    {
+        name: "Habib Shaikh",
+        spec: "Empathetic Listener",
+        tags: ["Understanding", "Calm"],
+        status: "Available now",
+    },
+    {
+        name: "Alka Patel",
+        spec: "Compassionate Support",
+        tags: ["Warm", "Insightful"],
+        status: "Available now",
+    },
+    {
+        name: "Raj Chaudhary",
+        spec: "Non-judgmental Ear",
+        tags: ["Patient", "Supportive"],
+        status: "Available now",
+    },
 ];
 
 import Image from "next/image";
@@ -49,7 +67,7 @@ export default function LiveListenerPreview() {
                     <p className="text-sm text-slate-500 font-medium max-w-lg mx-auto tracking-wide">Available right now to hold space for your story, without judgment or distraction.</p>
                 </motion.div>
 
-                <div className="flex flex-wrap justify-center gap-8">
+                <div className="flex flex-wrap lg:flex-nowrap justify-center gap-8">
                     {listeners.map((listener, idx) => (
                         <motion.div
                             key={idx}
