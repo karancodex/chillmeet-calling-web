@@ -43,19 +43,19 @@ export default function Navbar() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className={clsx(
-                "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+                "fixed top-0 left-0 w-full z-50 transition-all duration-500",
                 scrolled
-                    ? "bg-[#0B0F1A] border-b border-white/10 py-3 shadow-xl"
-                    : "bg-transparent py-6"
+                    ? "bg-[#020305]/80 backdrop-blur-2xl border-b border-luxury-gold/10 py-4 shadow-2xl"
+                    : "bg-transparent py-8"
             )}
         >
             <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
                 {/* Logo Section */}
                 <Link href="/" className="flex items-center gap-2 md:gap-3 group shrink-0">
-                    <div className="relative w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300">
-                        <ListnerZoneLogo className="w-full h-full" color="white" />
+                    <div className="relative w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-500">
+                        <ListnerZoneLogo className="w-full h-full" color="#D4AF37" />
                     </div>
-                    <span className="text-xl md:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-primary via-secondary to-accent tracking-tighter">
+                    <span className="text-xl md:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-luxury-gold via-white to-luxury-gold tracking-tighter uppercase font-display">
                         ListnerZone
                     </span>
                 </Link>
