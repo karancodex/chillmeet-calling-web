@@ -37,25 +37,38 @@ export default function Navbar() {
         }
     }, [isMenuOpen]);
 
+    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith("/#") || href.startsWith("#")) {
+            const id = href.replace("/#", "").replace("#", "");
+            const element = document.getElementById(id);
+            if (element) {
+                e.preventDefault();
+                element.scrollIntoView({ behavior: "smooth" });
+                window.history.pushState(null, "", href.startsWith("/#") ? href : `/#${id}`);
+                setIsMenuOpen(false);
+            }
+        }
+    };
+
     return (
         <motion.nav
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className={clsx(
-                "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+                "fixed top-0 left-0 w-full z-50 transition-all duration-500",
                 scrolled
-                    ? "bg-[#0B0F1A] border-b border-white/10 py-3 shadow-xl"
-                    : "bg-transparent py-6"
+                    ? "bg-[#020305]/80 backdrop-blur-2xl border-b border-luxury-gold/10 py-3 md:py-4 shadow-2xl"
+                    : "bg-transparent py-6 md:py-8"
             )}
         >
             <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
                 {/* Logo Section */}
                 <Link href="/" className="flex items-center gap-2 md:gap-3 group shrink-0">
-                    <div className="relative w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300">
-                        <ListnerZoneLogo className="w-full h-full" color="white" />
+                    <div className="relative w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-500">
+                        <ListnerZoneLogo className="w-full h-full" color="#D4AF37" />
                     </div>
-                    <span className="text-xl md:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-primary via-secondary to-accent tracking-tighter">
+                    <span className="text-lg md:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-luxury-gold via-white to-luxury-gold tracking-tighter uppercase font-display">
                         ListnerZone
                     </span>
                 </Link>
@@ -70,15 +83,19 @@ export default function Navbar() {
                     </Link>
 
                     <div className="flex items-center gap-10">
-                        {["Pricing", "About", "Safety"].map((item) => (
-                            <Link
-                                key={item}
-                                href={item === "Pricing" ? "/#pricing" : `/${item.toLowerCase().replace(/ /g, "-")}`}
-                                className="text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
-                            >
-                                {item}
-                            </Link>
-                        ))}
+                        {["Pricing", "Journal", "FAQ", "About", "Safety"].map((item) => {
+                            const href = item === "Pricing" ? "/#pricing" : item === "Journal" ? "/blog" : item === "FAQ" ? "/faq" : `/${item.toLowerCase().replace(/ /g, "-")}`;
+                            return (
+                                <Link
+                                    key={item}
+                                    href={href}
+                                    onClick={(e) => handleAnchorClick(e, href)}
+                                    className="text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                                >
+                                    {item}
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     <Link
@@ -89,69 +106,13 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex items-center gap-4">
-
-
-                    {/* Mobile Menu Toggle */}
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-2 text-white hover:text-primary transition-colors z-[60]"
-                        aria-label="Toggle menu"
-                    >
-                        {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-                    </button>
+                {/* Mobile Action Icon (Simplified for App Feel) */}
+                <div className="md:hidden flex items-center gap-4">
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                        <Mic className="w-4 h-4 text-luxury-gold" />
+                    </div>
                 </div>
             </div>
-
-            {/* Mobile Menu Dropdown */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 bg-[#0B0F1A] z-40 md:hidden pt-24 px-6"
-                    >
-                        <div className="flex flex-col gap-8 text-center">
-                            <Link
-                                href="/contact"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="text-xl font-bold uppercase tracking-widest text-white hover:text-primary transition-colors"
-                            >
-                                Join as Listener
-                            </Link>
-
-                            <div className="flex flex-col gap-8">
-                                {["Pricing", "About", "Safety"].map((item) => (
-                                    <Link
-                                        key={item}
-                                        href={item === "Pricing" ? "/#pricing" : `/${item.toLowerCase().replace(/ /g, "-")}`}
-                                        onClick={() => setIsMenuOpen(false)}
-                                        className="text-xl font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
-                                    >
-                                        {item}
-                                    </Link>
-                                ))}
-                            </div>
-
-                            <Link
-                                href="/contact"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="text-xl font-bold uppercase tracking-widest text-white hover:text-primary transition-colors"
-                            >
-                                Contact
-                            </Link>
-                        </div>
-
-                        {/* Decoration */}
-                        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
-                            <ListnerZoneLogo className="w-40 h-40" color="white" />
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </motion.nav>
     );
 }
