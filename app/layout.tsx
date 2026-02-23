@@ -21,11 +21,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://listnerzone.com'),
-  title: {
-    default: "ListnerZone - Anonymous Emotional Support & Active Listening",
-    template: "%s | ListnerZone"
-  },
-  description: "A digital sanctuary for anonymous emotional support. Connect with compassionate listeners who understand, without judgment. Speak your truth and find your inner peace.",
+  title: "Someone to Talk to Online | Anonymous Conversation | ListenerZone",
+  description: "Feeling lonely and need someone to talk? ListenerZone offers private, anonymous listening sessions. Vent to someone online without judgement today.",
   keywords: [
     "emotional support", "anonymous chat", "active listening", "mental wellness",
     "listnerzone", "peace of mind", "talk to someone", "mental health support",
@@ -38,8 +35,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "ListnerZone - Find Your Inner Peace",
-    description: "Connect with compassionate listeners anonymously. Your safe harbor for emotional support.",
+    title: "Someone to Talk to When The World Feels Too Loud. | ListenerZone",
+    description: "Feeling overwhelmed? ListenerZone offers private, anonymous listening sessions. Talk to someone online without judgement today.",
     url: "https://listnerzone.com",
     siteName: "ListnerZone",
     images: [
@@ -55,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ListnerZone - Anonymous Emotional Support",
-    description: "Speak your truth anonymously. Compassionate listeners available 24/7.",
+    title: "Someone to Talk to When The World Feels Too Loud. | ListenerZone",
+    description: "Feeling overwhelmed? ListenerZone offers private, anonymous listening sessions. Talk to someone online without judgement today.",
     images: ["/images/hero_banner_premium.png"],
     creator: "@listnerzone",
   },
@@ -83,6 +80,8 @@ export const metadata: Metadata = {
   category: 'health',
 };
 
+import BottomNav from "@/components/ui/BottomNav";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -92,8 +91,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${outfit.variable} ${inter.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         {children}
+        <BottomNav />
       </body>
     </html>
   );

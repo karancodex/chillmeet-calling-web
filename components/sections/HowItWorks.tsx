@@ -1,86 +1,125 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquareText, Timer, Radio } from "lucide-react";
-import Image from "next/image";
+import { BrainCircuit, ShieldCheck, HeartHandshake, Radio, Zap, Sparkles, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const steps = [
     {
-        icon: MessageSquareText,
-        title: "Share Your Vibe",
-        desc: "Pick what's weighing you down. We'll match you with the right soul.",
+        icon: BrainCircuit,
+        title: "Match Your Mood",
+        desc: "Tell us how you feel. We'll find a empathetic listener who perfectly resonates with your current energy.",
+        color: "text-luxury-gold",
+        bg: "bg-luxury-gold/5"
+    },
+    {
+        icon: ShieldCheck,
+        title: "Stay Anonymous",
+        desc: "Start an anonymous conversation without registration. Your identity remains 100% private and protected.",
         color: "text-blue-400",
-        glow: "bg-blue-500/10"
+        bg: "bg-blue-400/5"
     },
     {
-        icon: Timer,
-        title: "Choose Your Pace",
-        desc: "Immediate connection or a scheduled deep dive. You decide.",
+        icon: HeartHandshake,
+        title: "Human Presence",
+        desc: "Experience a private listening session with trained adults who listen with empathy and deep understanding.",
         color: "text-purple-400",
-        glow: "bg-purple-500/10"
+        bg: "bg-purple-400/5"
     },
     {
-        icon: Radio,
-        title: "Go Live Live",
-        desc: "Bridge the distance with a high-fidelity, anonymous voice stream.",
-        color: "text-accent",
-        glow: "bg-accent/10"
+        icon: Zap,
+        title: "Instant Relief",
+        desc: "Release your stress and talk without judgement to find clarity in just one session. Feel seen immediately.",
+        color: "text-emerald-400",
+        bg: "bg-emerald-400/5"
     }
 ];
 
 export default function HowItWorks() {
     return (
-        <section className="py-24 relative overflow-hidden bg-dark">
-            <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-                <Image
-                    src="/images/hero_banner_premium.png"
-                    alt="Background"
-                    fill
-                    className="object-cover opacity-5"
-                />
-            </div>
-
-            <div className="container mx-auto px-6">
-                <motion.div
-                    className="text-center mb-24"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                >
-                    <h2 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 text-white tracking-[-0.03em] leading-tight font-display">
-                        The Path To <span className="text-gradient-premium">Peace.</span>
+        <section className="py-24 bg-[#020305] relative overflow-hidden">
+            <div className="container mx-auto px-6 relative z-10">
+                {/* Simple & Clean Header */}
+                <div className="text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
+                    >
+                        <Sparkles className="w-3 h-3 text-luxury-gold" />
+                        <span className="text-[10px] font-black text-white/60 tracking-[0.3em] uppercase">Simple 5-Step Process</span>
+                    </motion.div>
+                    <h2 className="text-3xl md:text-5xl font-black text-white mb-6 font-display tracking-tight">
+                        The Path To <span className="text-luxury-gold italic">Peace Of Mind.</span>
                     </h2>
-                    <p className="text-[10px] text-primary/60 font-black uppercase tracking-[0.4em] max-w-xl mx-auto">Three simple steps to speak your truth anonymously.</p>
-                </motion.div>
+                    <p className="text-slate-400 text-lg max-w-2xl mx-auto font-medium">
+                        We've made it effortless to find the support you need. Just follow these steps to start your healing journey.
+                    </p>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-                    {steps.map((step, index) => (
+                {/* Clean Horizontal/Vertical Journey */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 px-4 md:px-0">
+                    {steps.map((step, idx) => (
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.15, duration: 0.8 }}
-                            className="bg-slate-900/40 backdrop-blur-3xl p-8 md:p-14 flex flex-col items-center text-center relative group overflow-hidden border border-white/5 rounded-[3rem] md:rounded-[4rem] transition-all duration-700 hover:border-white/10 shadow-2xl"
+                            transition={{ delay: idx * 0.1 }}
+                            className="relative group h-full"
                         >
-                            {/* Step Number Backdrop */}
-                            <div className="absolute -top-12 -right-12 text-[200px] font-black italic text-white/2 group-hover:text-primary/4 transition-all duration-1000 leading-none pointer-events-none font-display">
-                                {index + 1}
+                            <div className="h-full p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-luxury-gold/30 hover:bg-white/[0.05] transition-all duration-500 flex flex-col items-center text-center">
+                                {/* Number Circle */}
+                                <div className="absolute top-6 right-8 text-4xl font-black text-white/[0.03] group-hover:text-luxury-gold/10 transition-colors">
+                                    0{idx + 1}
+                                </div>
+
+                                <div className={`w-16 h-16 rounded-2xl ${step.bg} flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                                    <step.icon className={`w-8 h-8 ${step.color}`} />
+                                </div>
+
+                                <h3 className="text-lg font-black text-white mb-4 uppercase tracking-tight group-hover:text-luxury-gold transition-colors">
+                                    {step.title}
+                                </h3>
+                                <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                                    {step.desc}
+                                </p>
                             </div>
 
-                            <div className={`w-20 h-20 md:w-28 md:h-28 organic-shape-1 ${step.glow} flex items-center justify-center border border-white/5 mb-8 md:mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-xl`}>
-                                <step.icon className={`w-8 h-8 md:w-12 md:h-12 ${step.color}`} />
-                            </div>
-
-                            <h3 className="text-xl font-black mb-6 text-white tracking-tight group-hover:text-primary transition-colors font-display">{step.title}</h3>
-                            <p className="text-slate-500 leading-relaxed text-[11px] font-bold uppercase tracking-[0.2em] max-w-[200px]">
-                                {step.desc}
-                            </p>
-
-                            <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000" />
+                            {/* Connector Line for Desktop */}
+                            {idx < steps.length - 1 && (
+                                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-px bg-white/10 z-0" />
+                            )}
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Final Simple CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                    className="mt-20 text-center"
+                >
+                    <Link
+                        href="#pricing"
+                        onClick={(e) => {
+                            const element = document.getElementById("pricing");
+                            if (element) {
+                                e.preventDefault();
+                                element.scrollIntoView({ behavior: "smooth" });
+                                window.history.pushState(null, "", "/#pricing");
+                            }
+                        }}
+                        className="inline-flex items-center gap-3 px-10 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[11px] transition-all duration-500 hover:scale-105 shadow-xl"
+                    >
+                        Start Your First Call
+                        <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <p className="mt-6 text-[10px] font-black text-white/30 tracking-[0.4em] uppercase">No Sign-Up Required • 100% Private</p>
+                </motion.div>
             </div>
         </section>
     );

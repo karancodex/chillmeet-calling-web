@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, Loader2, CheckCircle2, AlertCircle, Mail, Phone } from "lucide-react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import emailjs from "@emailjs/browser";
@@ -10,6 +10,9 @@ import emailjs from "@emailjs/browser";
 const SERVICE_ID = process.env.NEXT_PUBLIC_CONTACT_EMAILJS_SERVICE_ID || "";
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_CONTACT_EMAILJS_TEMPLATE_ID || "";
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_CONTACT_EMAILJS_PUBLIC_KEY || "";
+
+const SUPPORT_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@listnerzone.com";
+const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
 
 export default function ContactPage() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -69,11 +72,52 @@ export default function ContactPage() {
                     </p>
                 </motion.div>
 
-                <div className="max-w-2xl mx-auto">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {/* Left Side: Contact Details */}
+                    <div className="space-y-6">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="glass-card p-8 border border-white/5 flex items-center gap-6 group hover:border-primary/30 transition-all duration-500"
+                        >
+                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500">
+                                <Mail className="w-8 h-8 text-primary" />
+                            </div>
+                            <div>
+                                <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-1">Email Support</h3>
+                                <a href={`mailto:${SUPPORT_EMAIL}`} className="text-white/80 hover:text-white transition-colors text-lg font-medium block break-all">{SUPPORT_EMAIL}</a>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="glass-card p-8 border border-white/5 flex items-center gap-6 group hover:border-primary/30 transition-all duration-500"
+                        >
+                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500">
+                                <Phone className="w-8 h-8 text-primary" />
+                            </div>
+                            <div>
+                                <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-1">Call Us</h3>
+                                <a href={`tel:${CONTACT_PHONE}`} className="text-white/80 hover:text-white transition-colors text-lg font-medium">{CONTACT_PHONE}</a>
+                            </div>
+                        </motion.div>
+
+                        <div className="p-8 rounded-3xl bg-linear-to-br from-primary/10 to-transparent border border-primary/20">
+                            <h3 className="text-xl font-black text-white mb-2">Need Immediate Help?</h3>
+                            <p className="text-white/60 text-sm leading-relaxed mb-4">
+                                Our listeners are available 24/7. Use the booking section to schedule a session instantly.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Right Side: Form */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="glass-card p-10 border border-white/5 relative overflow-hidden"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="glass-card p-8 md:p-10 border border-white/5 relative overflow-hidden"
                     >
                         <h2 className="text-2xl font-black text-white mb-8 uppercase tracking-tight">Send a Message</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">

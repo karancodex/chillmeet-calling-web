@@ -1,191 +1,190 @@
 "use client";
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Mic, Clock, Sparkles, CloudRain, UserX, Zap, HeartCrack, Heart, AlertTriangle } from "lucide-react";
-import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, AlertTriangle, ChevronRight, ChevronLeft } from "lucide-react";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import clsx from "clsx";
 
-const FloatingShapes = dynamic(() => import("../3d/FloatingShapes"), { ssr: false });
+const slides = [
+    {
+        image: "/images/tr_woman.png",
+        tag: "OFFICE BURNOUT • EMOTIONAL RELIEF",
+        title: "Someone to Talk to <br /> <span class='text-gradient-premium italic'>When The World Feels Too Loud.</span>",
+        desc: "From the weight of a high-pressure office to the pure joy of being truly heard. Vent to someone online without judgement and experience an instant mental shift.",
+        cta: "Talk Now",
+    },
+    {
+        image: "/images/tr_man.png",
+        tag: "BREAKUP PAIN • LONELINESS",
+        title: "Anonymous Conversation <br /> <span class='text-gradient-premium italic'>For Your Heavy Heart.</span>",
+        desc: "Don't carry the ache of a breakup alone. Connect with elite listeners for a private listening session. Move from heartbreak to a liberated soul in total privacy.",
+        cta: "Find Peace",
+    },
+    {
+        image: "/images/tr_boy.png",
+        tag: "ANXIETY • URBAN STRESS",
+        title: "Emotional Support Call <br /> <span class='text-gradient-premium italic'>Available 24/7.</span>",
+        desc: "Feeling stuck in the chaos? Whether you need late night talk support or a quiet place to think, our online listening service is built to reclaim your calm.",
+        cta: "Start Healing",
+    }
+];
 
 export default function Hero() {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-    const opacityTransform = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-    const feelings = [
-        { text: "Anxious Thoughts", Icon: CloudRain, color: "text-blue-400" },
-        { text: "Lonely Nights", Icon: UserX, color: "text-indigo-400" },
-        { text: "Stressful Days", Icon: Zap, color: "text-yellow-400" },
-        { text: "Heavy Heartbreak", Icon: HeartCrack, color: "text-red-400" },
-        { text: "Every Feeling", Icon: Heart, color: "text-pink-400" }
-    ];
-    const [index, setIndex] = useState(0);
-    const CurrentIcon = feelings[index].Icon;
+    const [current, setCurrent] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setIndex((prev) => (prev + 1) % feelings.length);
-        }, 2500);
+            setCurrent((prev) => (prev + 1) % slides.length);
+        }, 8000);
         return () => clearInterval(timer);
     }, []);
 
+    const next = () => setCurrent((prev) => (prev + 1) % slides.length);
+    const prev = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+
     return (
-        <section ref={ref} className="relative min-h-[85vh] w-full flex items-center justify-center overflow-hidden pt-24 pb-16 bg-dark">
-            {/* Base Dark Background Layer */}
-            <Image
-                src="/images/listnerzone_hero.png"
-                alt="ListnerZone 3D Sanctuary"
-                fill
-                className="object-cover opacity-60 scale-100"
-                style={{ objectPosition: 'center center' }}
-                priority
-            />
-            <div className="absolute inset-0 bg-dark/60 -z-70" />
-
-            {/* Cinematic Overlay */}
-            <motion.div
-                style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "15%"]) }}
-                className="absolute inset-0 w-full h-full -z-50"
-            >
-                <Image
-                    src="/images/listnerzone_hero.png"
-                    alt="ListnerZone 3D Sanctuary"
-                    fill
-                    className="object-cover opacity-60"
-                    style={{ objectPosition: 'center center' }}
-                    priority
-                />
-                <div className="absolute inset-0 bg-linear-to-b from-dark/40 via-transparent to-dark" />
-            </motion.div>
-
-            {/* Dynamic Animated Blobs */}
-            <div className="absolute inset-0 w-full h-full -z-40 overflow-hidden pointer-events-none">
+        <section className="relative h-[90vh] md:h-[85vh] min-h-[600px] w-full flex items-center overflow-hidden bg-[#020305]">
+            <AnimatePresence mode="wait">
                 <motion.div
-                    animate={{
-                        x: [0, 50, 0],
-                        y: [0, 30, 0],
-                        scale: [1, 1.1, 1]
-                    }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-[5%] -left-[5%] w-[35%] h-[35%] rounded-full bg-burgundy/10 blur-[100px]"
-                />
-                <motion.div
-                    animate={{
-                        x: [0, -40, 0],
-                        y: [0, 60, 0],
-                        scale: [1, 1.1, 1]
-                    }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute bottom-[5%] -right-[5%] w-[40%] h-[40%] rounded-full bg-blue-deep/10 blur-[120px]"
-                />
-            </div>
-
-            <div className="container mx-auto px-6 z-10 text-center relative">
-                <motion.div
+                    key={current}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1.5 }}
-                    className="max-w-4xl mx-auto flex flex-col items-center"
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                    className="absolute inset-0 z-0"
                 >
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.8 }}
-                        className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl mb-8 shadow-xl"
-                    >
-                        <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary animate-pulse" />
-                        <span className="text-[7px] md:text-[9px] font-black text-white/80 tracking-[0.2em] md:tracking-[0.3em] uppercase text-center">Private • Secure • Empathetic</span>
-                    </motion.div>
-
-                    {/* Integrated Safety Notice - Enhanced for Visibility */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.8 }}
-                        className="mb-12 px-8 py-6 rounded-4xl bg-red-500/10 border border-red-500/20 max-w-2xl backdrop-blur-3xl shadow-[0_0_50px_rgba(239,68,68,0.1)]"
-                    >
-                        <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-                            <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 border border-red-500/30">
-                                <AlertTriangle className="w-6 h-6 text-red-500" />
-                            </div>
-                            <div>
-                                <h4 className="text-red-500 text-xs font-black uppercase tracking-[0.3em] mb-1">Safety & Legal Disclaimer</h4>
-                                <p className="text-[11px] md:text-xs text-white/70 font-bold leading-relaxed">
-                                    ListnerZone is for emotional support only, not crisis or medical services.
-                                    <span className="text-white block mt-1 font-black underline decoration-red-500/50">
-                                        Any actions taken following a session are the sole responsibility of the user.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    <motion.h1
-                        className="text-3xl md:text-6xl font-black mb-6 md:mb-8 tracking-[-0.04em] text-white leading-[0.95] font-display"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        Your Journey To <br />
-                        <span className="text-gradient-premium">
-                            Harmony.
-                        </span>
-                    </motion.h1>
-
-                    <motion.div
-                        className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 text-sm md:text-2xl text-white/60 mb-10 md:mb-12 font-display font-medium leading-relaxed tracking-tight"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 1 }}
-                    >
-                        <span>The support for</span>
-                        <div className="relative h-10 md:h-12 w-[240px] md:w-[450px] text-center md:text-left overflow-hidden">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={feelings[index].text}
-                                    initial={{ y: 20, opacity: 0, rotateX: -90 }}
-                                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                                    exit={{ y: -20, opacity: 0, rotateX: 90 }}
-                                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                                    className="absolute inset-0 flex items-center justify-center md:justify-start gap-3 md:gap-4"
-                                >
-                                    <CurrentIcon className={clsx("w-6 h-6 md:w-8 md:h-8", feelings[index].color)} />
-                                    <span className={clsx("font-black uppercase tracking-[-0.03em] text-sm md:text-2xl", feelings[index].color)}>
-                                        {feelings[index].text}
-                                    </span>
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        className="flex items-center gap-6 px-8 py-4 bg-white/5 backdrop-blur-2xl rounded-full border border-white/5 shadow-xl"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 1 }}
-                    >
-                        <div className="flex items-center gap-2.5">
-                            <span className="relative flex h-2.5 w-2.5">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                            </span>
-                            <span className="text-[10px] font-black text-white/80 tracking-widest uppercase">Live Now</span>
-                        </div>
-                        <div className="w-px h-5 bg-white/10" />
-                        <span className="text-[10px] font-black text-slate-500 tracking-widest uppercase">Anonymous Support</span>
-                    </motion.div>
+                    <Image
+                        src={slides[current].image}
+                        alt="Hero Transformation Background"
+                        fill
+                        className="object-cover md:object-right lg:object-center"
+                        priority
+                    />
+                    {/* Darker left gradient for text readability matching the ref style */}
+                    <div className="absolute inset-0 bg-linear-to-b from-[#020305]/60 via-[#020305]/80 to-[#020305] md:bg-linear-to-r md:from-[#020305] md:via-[#020305]/60 md:to-transparent z-10" />
                 </motion.div>
+            </AnimatePresence>
+
+            <div className="container mx-auto px-6 md:px-12 z-20 relative">
+                <div className="max-w-3xl">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={`content-${current}`}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.05 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="flex flex-col items-center md:items-start text-center md:text-left pt-20 md:pt-0"
+                        >
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="flex items-center gap-3 mb-6 bg-white/5 backdrop-blur-3xl px-4 py-2 rounded-full border border-white/10"
+                            >
+                                <Sparkles className="w-3 h-3 text-luxury-gold" />
+                                <span className="text-[8px] md:text-[10px] font-black text-white/80 tracking-[0.4em] uppercase">{slides[current].tag}</span>
+                            </motion.div>
+
+                            <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.25 }}
+                                className="text-[8px] md:text-[10px] font-bold text-red-500/80 uppercase tracking-widest mb-4"
+                            >
+                                Note: We are not doctors. This is a listening service.
+                            </motion.p>
+
+                            <motion.h1
+                                className="text-3xl sm:text-4xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-[1.1] md:leading-[0.95] font-display"
+                                dangerouslySetInnerHTML={{ __html: slides[current].title }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 1 }}
+                            />
+
+                            <motion.p
+                                className="text-xs md:text-lg text-slate-400 max-w-xl mb-10 font-medium leading-relaxed tracking-tight px-4 md:px-0"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4, duration: 1 }}
+                            >
+                                {slides[current].desc}
+                            </motion.p>
+
+                            <motion.div
+                                className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto px-10 md:px-0"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5, duration: 1 }}
+                            >
+                                <Link
+                                    href="#pricing"
+                                    onClick={(e) => {
+                                        const element = document.getElementById("pricing");
+                                        if (element) {
+                                            e.preventDefault();
+                                            element.scrollIntoView({ behavior: "smooth" });
+                                            window.history.pushState(null, "", "/#pricing");
+                                        }
+                                    }}
+                                    className="w-full sm:w-auto px-12 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-500 hover:bg-primary-dark shadow-[0_20px_40px_-10px_rgba(139,92,246,0.3)] hover:scale-105 active:scale-95 text-center"
+                                >
+                                    {slides[current].cta}
+                                </Link>
+
+                                <Link
+                                    href="#how-it-works"
+                                    onClick={(e) => {
+                                        const element = document.getElementById("how-it-works");
+                                        if (element) {
+                                            e.preventDefault();
+                                            element.scrollIntoView({ behavior: "smooth" });
+                                            window.history.pushState(null, "", "/#how-it-works");
+                                        }
+                                    }}
+                                    className="w-full sm:w-auto px-12 py-5 bg-white/5 border border-white/20 text-white rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-500 hover:bg-white/10 backdrop-blur-2xl text-center"
+                                >
+                                    How It Works
+                                </Link>
+                            </motion.div>
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
             </div>
 
-            {/* Bottom Fade */}
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-dark via-dark/70 to-transparent z-10" />
+            {/* Pagination dots matching the reference image style */}
+            <div className="absolute bottom-12 left-6 md:left-12 flex items-center gap-2 z-30">
+                {slides.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setCurrent(i)}
+                        className={clsx(
+                            "h-1.5 rounded-full transition-all duration-700",
+                            current === i ? "w-8 bg-luxury-gold shadow-[0_0_10px_rgba(212,175,55,0.4)]" : "w-1.5 bg-white/30"
+                        )}
+                        aria-label={`Go to slide ${i + 1}`}
+                    />
+                ))}
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex absolute right-12 bottom-12 gap-3 z-30">
+                <button onClick={prev} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-luxury-gold/30 transition-all duration-500 text-white/40 hover:text-white">
+                    <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button onClick={next} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-luxury-gold/30 transition-all duration-500 text-white/40 hover:text-white">
+                    <ChevronRight className="w-4 h-4" />
+                </button>
+            </div>
+
+            {/* Private Tag */}
+            <div className="absolute bottom-6 right-8 z-30 opacity-30 select-none hidden md:flex items-center gap-2">
+                <AlertTriangle className="w-3 h-3" />
+                <p className="text-[8px] font-black text-white tracking-[0.4em] uppercase">100% Anonymous & Secure Line</p>
+            </div>
         </section>
     );
 }

@@ -16,7 +16,7 @@ export default function StructuredData() {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'ListnerZone',
-        url: 'https://listnerzone.in',
+        url: 'https://listnerzone.com',
     };
 
     const serviceData = {
