@@ -1,4 +1,14 @@
 import LegalLayout from "@/components/ui/LegalLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Privacy Policy | Your Anonymity Matters | ListnerZone",
+    description: "Learn how ListnerZone protects your privacy and maintains your anonymity during listening sessions. We prioritize your emotional safety.",
+    alternates: {
+        canonical: "https://listnerzone.com/privacy",
+    },
+};
+
 
 const content = (
     <>

@@ -106,13 +106,113 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Mobile Action Icon (Simplified for App Feel) */}
+                {/* Mobile Menu Toggle */}
                 <div className="md:hidden flex items-center gap-4">
-                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                        <Mic className="w-4 h-4 text-luxury-gold" />
-                    </div>
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-white hover:bg-white/10 transition-colors"
+                        aria-label="Toggle Menu"
+                    >
+                        {isMenuOpen ? <X className="w-5 h-5 shadow-luxury-gold" /> : <Menu className="w-5 h-5" />}
+                    </button>
                 </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, x: "100%" }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: "100%" }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className="fixed inset-0 z-50 bg-[#020305] flex flex-col p-8 md:hidden"
+                    >
+                        {/* Mobile Menu Header */}
+                        <div className="flex items-center justify-between mb-16">
+                            <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+                                <div className="w-8 h-8">
+                                    <ListnerZoneLogo className="w-full h-full" color="#D4AF37" />
+                                </div>
+                                <span className="text-xl font-black text-white uppercase tracking-tighter font-display">
+                                    Listner<span className="text-luxury-gold">Zone</span>
+                                </span>
+                            </Link>
+                            <button
+                                onClick={() => setIsMenuOpen(false)}
+                                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-white"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        {/* Mobile Menu Links */}
+                        <div className="flex flex-col gap-8">
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                            >
+                                <Link
+                                    href="/listener/apply"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-2xl font-black text-white hover:text-luxury-gold transition-colors block uppercase tracking-tighter"
+                                >
+                                    Join as Listener
+                                </Link>
+                            </motion.div>
+
+                            {["Pricing", "Journal", "FAQ", "About", "Safety"].map((item, idx) => {
+                                const href = item === "Pricing" ? "/#pricing" : item === "Journal" ? "/blog" : item === "FAQ" ? "/faq" : `/${item.toLowerCase().replace(/ /g, "-")}`;
+                                return (
+                                    <motion.div
+                                        key={item}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.1 + (idx + 1) * 0.05 }}
+                                    >
+                                        <Link
+                                            href={href}
+                                            onClick={(e) => {
+                                                handleAnchorClick(e, href);
+                                                setIsMenuOpen(false);
+                                            }}
+                                            className="text-4xl font-black text-white hover:text-luxury-gold transition-colors block uppercase tracking-tighter"
+                                        >
+                                            {item}
+                                        </Link>
+                                    </motion.div>
+                                );
+                            })}
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="pt-8 border-t border-white/5"
+                            >
+                                <Link
+                                    href="/contact"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-2xl font-black text-luxury-gold hover:text-white transition-colors block uppercase tracking-tighter"
+                                >
+                                    Contact Support
+                                </Link>
+                            </motion.div>
+                        </div>
+
+                        {/* Mobile Menu Footer */}
+                        <div className="mt-auto pt-10">
+                            <p className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] mb-4">Elite Sanctuary</p>
+                            <div className="flex gap-4">
+                                <div className="w-1.5 h-1.5 rounded-full bg-luxury-gold" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 }

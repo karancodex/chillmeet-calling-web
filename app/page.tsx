@@ -1,5 +1,13 @@
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://listnerzone.com",
+  },
+};
+
 import Hero from "@/components/sections/Hero";
 import HowItWorks from "@/components/sections/HowItWorks";
 import WhyPeopleComeHere from "@/components/sections/WhyPeopleComeHere";
