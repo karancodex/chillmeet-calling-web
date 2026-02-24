@@ -34,7 +34,7 @@ export default function TrustWitness() {
                     className="max-w-5xl mx-auto bg-white/[0.03] border border-white/10 rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center"
                 >
                     {/* Left: Content Side - Compact & Clean */}
-                    <div className="lg:w-[55%] p-8 lg:p-14 flex flex-col justify-center relative order-2 lg:order-1">
+                    <div className="w-full lg:w-[55%] p-8 lg:p-14 flex flex-col justify-center relative order-2 lg:order-1">
                         {/* Shaded background like reference */}
                         <div className="absolute top-6 left-6 right-6 bottom-6 bg-white/[0.01] rounded-[2rem] -z-10" />
 
@@ -84,13 +84,14 @@ export default function TrustWitness() {
                     </div>
 
                     {/* Right: Visual Side - Calling Simulation Mockup */}
-                    <div className="lg:w-[45%] relative overflow-hidden h-[350px] lg:h-[450px] bg-dark order-1 lg:order-2">
-                        <div className="absolute inset-0 rounded-tr-[4rem] rounded-bl-[4rem] overflow-hidden m-4 md:m-6 border border-white/10 group">
+                    <div className="w-full lg:w-[45%] relative overflow-hidden h-[400px] lg:h-[500px] bg-dark/50 order-1 lg:order-2">
+                        <div className="absolute inset-4 md:inset-6 rounded-[2.5rem] overflow-hidden border border-white/10 group">
                             <Image
                                 src="/images/trusted_listener_2_1770542117703.png"
                                 alt="Trusted Listener"
                                 fill
-                                className="object-cover opacity-40 group-hover:scale-110 transition-transform duration-[8s] brightness-75"
+                                className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-[8s] brightness-100"
+                                priority
                             />
                             {/* Live Calling UI Overlay - Compact Version */}
                             <div className="absolute inset-0 flex flex-col items-center justify-between p-10 z-20">

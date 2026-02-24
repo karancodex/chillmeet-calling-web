@@ -1,4 +1,14 @@
 import LegalLayout from "@/components/ui/LegalLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Terms & Conditions | ListnerZone",
+    description: "Read our terms and conditions for using the ListnerZone platform. Learn about user conduct, payment terms, and our service disclaimer.",
+    alternates: {
+        canonical: "https://listnerzone.com/terms",
+    },
+};
+
 
 const content = (
     <>

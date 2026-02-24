@@ -26,14 +26,15 @@ export const metadata: Metadata = {
   keywords: [
     "emotional support", "anonymous chat", "active listening", "mental wellness",
     "listnerzone", "peace of mind", "talk to someone", "mental health support",
-    "anonymous listening", "online vent", "healing conversation"
+    "anonymous listening", "online vent", "healing conversation",
+    "private vent online", "lonely talk to someone", "low cost emotional support",
+    "anonymous calling platform", "safe space to talk", "listen to me online",
+    "someone to talk to when lonely", "venting without judgement",
+    "mental health companion", "anonymous empathy", "online listening service"
   ],
   authors: [{ name: "ListnerZone Team", url: "https://listnerzone.com" }],
   creator: "ListnerZone",
   publisher: "ListnerZone",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Someone to Talk to When The World Feels Too Loud. | ListenerZone",
     description: "Feeling overwhelmed? ListenerZone offers private, anonymous listening sessions. Talk to someone online without judgement today.",

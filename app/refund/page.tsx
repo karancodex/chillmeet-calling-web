@@ -1,5 +1,15 @@
 import LegalLayout from "@/components/ui/LegalLayout";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Refund Policy | ListnerZone",
+    description: "Read our refund policy. We strive for quality connections and have clear guidelines for refund eligibility on our platform.",
+    alternates: {
+        canonical: "https://listnerzone.com/refund",
+    },
+};
+
 
 const content = (
     <>

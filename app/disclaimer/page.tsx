@@ -1,4 +1,14 @@
 import LegalLayout from "@/components/ui/LegalLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Disclaimer | ListnerZone Support",
+    description: "Important disclaimer regarding ListnerZone's services. We are not a medical or professional mental health provider. Peer support only.",
+    alternates: {
+        canonical: "https://listnerzone.com/disclaimer",
+    },
+};
+
 
 const content = (
     <>

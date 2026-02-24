@@ -95,18 +95,20 @@ export default function Pricing() {
     useEffect(() => {
         if (selectedPlanId === 'plan_custom') {
             const selected = customDurations.find(d => d.value === formData.duration);
-            if (selected) {
+            if (selected && selected.price !== formData.price) {
                 setFormData(prev => ({ ...prev, price: selected.price }));
             }
         } else if (selectedPlan) {
-            setFormData(prev => ({ ...prev, price: selectedPlan.price as number, duration: selectedPlan.minutes }));
+            if (formData.price !== (selectedPlan.price as number) || formData.duration !== selectedPlan.minutes) {
+                setFormData(prev => ({ ...prev, price: selectedPlan.price as number, duration: selectedPlan.minutes }));
+            }
         }
-    }, [formData.duration, selectedPlanId, selectedPlan]);
-
-
+    }, [formData.duration, formData.price, selectedPlanId, selectedPlan]);
 
     // Check for Payment Success from URL (Cashfree)
     useEffect(() => {
+        let isMounted = true;
+
         const verifyPayment = async () => {
             const query = new URLSearchParams(window.location.search);
             const status = query.get('payment');
@@ -115,7 +117,7 @@ export default function Pricing() {
             if (status === 'verify' && orderId) {
                 try {
                     const isPaid = await verifyCashfreePayment(orderId);
-                    if (isPaid) {
+                    if (isPaid && isMounted) {
                         setLastPaymentId(orderId);
 
                         // Retrieve stored booking details
@@ -127,30 +129,37 @@ export default function Pricing() {
                             } catch (parseError) {
                                 console.error("Error parsing stored details", parseError);
                                 // Fallback success if details are corrupted, at least show success
-                                setShowSuccess(true);
-                                setTimeout(() => setShowSuccess(false), 5000);
+                                if (isMounted) {
+                                    setShowSuccess(true);
+                                    setTimeout(() => { if (isMounted) setShowSuccess(false) }, 5000);
+                                }
                             } finally {
                                 localStorage.removeItem('pendingBooking');
                             }
                         } else {
-                            setShowSuccess(true);
-                            setTimeout(() => setShowSuccess(false), 5000);
+                            if (isMounted) {
+                                setShowSuccess(true);
+                                setTimeout(() => { if (isMounted) setShowSuccess(false) }, 5000);
+                            }
                         }
-                    } else {
+                    } else if (!isPaid && isMounted) {
                         alert('Payment verification failed. Please contact support if amount was deducted.');
                     }
                 } catch (error) {
                     console.error("Verification error", error);
-                    alert("An error occurred while verifying payment. Please contact support.");
+                    if (isMounted) alert("An error occurred while verifying payment. Please contact support.");
                 } finally {
                     // Clean URL
-                    const newUrl = window.location.pathname;
-                    window.history.replaceState({}, document.title, newUrl);
+                    if (isMounted) {
+                        const newUrl = window.location.pathname;
+                        window.history.replaceState({}, document.title, newUrl);
+                    }
                 }
             }
         };
 
         verifyPayment();
+        return () => { isMounted = false; };
     }, []);
 
     // --- Payment Integration ---
