@@ -110,14 +110,14 @@ export default function WhyPeopleComeHere() {
                                 feeling.span
                             )}
                         >
-                            <Link
+                            <a
                                 href="#pricing"
                                 onClick={(e) => {
                                     const element = document.getElementById("pricing");
                                     if (element) {
                                         e.preventDefault();
-                                        element.scrollIntoView({ behavior: "smooth" });
-                                        window.history.pushState(null, "", "/#pricing");
+                                        element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                        window.history.pushState(null, "", "#pricing");
                                     }
                                 }}
                                 className="block w-full h-full relative cursor-pointer"
@@ -157,7 +157,7 @@ export default function WhyPeopleComeHere() {
 
                                 {/* Hover Glow */}
                                 <div className="absolute inset-0 bg-luxury-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                            </Link>
+                            </a>
                         </motion.div>
                     ))}
                 </div>

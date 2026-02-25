@@ -45,21 +45,21 @@ export default function FinalCTA() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <Link
+                        <a
                             href="#pricing"
                             onClick={(e) => {
                                 const element = document.getElementById("pricing");
                                 if (element) {
                                     e.preventDefault();
-                                    element.scrollIntoView({ behavior: "smooth" });
-                                    window.history.pushState(null, "", "/#pricing");
+                                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    window.history.pushState(null, "", "#pricing");
                                 }
                             }}
-                            className="px-12 py-5 bg-white text-dark font-black uppercase text-[10px] tracking-widest rounded-full hover:bg-luxury-gold hover:text-white hover:scale-105 transition-all shadow-2xl flex items-center gap-3 group/btn"
+                            className="px-12 py-5 bg-white text-dark font-black uppercase text-[10px] tracking-widest rounded-full hover:bg-luxury-gold hover:text-white hover:scale-105 transition-all shadow-2xl flex items-center gap-3 group/btn cursor-pointer"
                         >
                             Start Your Conversation
                             <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                        </Link>
+                        </a>
                     </div>
 
                     <div className="mt-16 text-center">

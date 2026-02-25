@@ -62,8 +62,8 @@ export default function LiveListenerPreview() {
                     </p>
                 </div>
 
-                {/* Cool & Attractive Listener Cards */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 items-stretch">
+                {/* Vertical Stack for Mobile / Luxury Grid for Desktop */}
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-6 items-stretch pb-10">
                     {listeners.map((listener, idx) => (
                         <motion.div
                             key={idx}
@@ -71,74 +71,99 @@ export default function LiveListenerPreview() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1, duration: 0.6 }}
-                            className="group relative h-full pt-10"
+                            className="group relative pt-12"
                         >
-                            {/* Card Body */}
-                            <div className="h-full bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-6 pt-12 flex flex-col items-center text-center hover:border-luxury-gold/30 hover:bg-white/[0.04] transition-all duration-500 shadow-2xl relative">
+                            {/* Premium Card Body */}
+                            <div className="h-full bg-linear-to-b from-white/[0.05] to-transparent border border-white/10 rounded-[3rem] p-8 pt-16 flex flex-col items-center text-center hover:border-luxury-gold/40 hover:bg-white/[0.08] transition-all duration-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative backdrop-blur-sm group-hover:shadow-luxury-gold/5">
 
-                                {/* Floating Profile Image Mockup */}
-                                <div className="absolute -top-10 left-1/2 -translate-x-1/2">
+                                {/* Absolute Shine Effect */}
+                                <div className="absolute top-0 left-0 w-full h-1/2 bg-linear-to-b from-white/[0.02] to-transparent pointer-events-none" />
+
+                                {/* Floating Profile Image Mockup - Enhanced */}
+                                <div className="absolute -top-12 left-1/2 -translate-x-1/2">
                                     <div className="relative">
-                                        {/* Pulse Effect */}
-                                        <div className="absolute inset-0 bg-luxury-gold/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-1000" />
+                                        {/* Dynamic Glow Background */}
+                                        <div className="absolute inset-0 bg-luxury-gold/30 rounded-full blur-2xl group-hover:bg-luxury-gold/50 transition-colors duration-1000 scale-90" />
 
-                                        <div className="w-20 h-20 rounded-full bg-linear-to-br from-slate-800 to-dark p-[2px] relative z-10 overflow-hidden shadow-2xl">
-                                            <div className="w-full h-full rounded-full bg-dark flex items-center justify-center border border-white/10 overflow-hidden group-hover:scale-110 transition-transform duration-700">
-                                                <User className="w-8 h-8 text-white/10" />
+                                        {/* Outer Ring */}
+                                        <div className="w-24 h-24 rounded-full p-[2px] bg-linear-to-br from-luxury-gold via-white/20 to-luxury-gold/40 relative z-10 shadow-2xl transition-transform duration-700 group-hover:rotate-12">
+                                            <div className="w-full h-full rounded-full bg-[#020305] flex items-center justify-center p-1">
+                                                <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden relative group-hover:scale-105 transition-transform duration-500">
+                                                    <div className="absolute inset-0 bg-linear-to-tr from-luxury-gold/20 to-transparent opacity-50" />
+                                                    <User className="w-10 h-10 text-white/20" />
+                                                </div>
                                             </div>
                                         </div>
 
-                                        {/* Status Dot */}
-                                        <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#020305] z-20 shadow-lg" />
+                                        {/* Professional Status Badge */}
+                                        <div className="absolute bottom-1 right-1 px-2 py-0.5 rounded-full bg-emerald-500 text-[6px] font-black text-white uppercase tracking-tighter border-2 border-[#020305] z-30 shadow-lg shadow-emerald-500/20">
+                                            LIVE
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="mt-4 mb-1">
-                                    <h3 className="text-xl font-black text-white group-hover:text-luxury-gold transition-colors font-display tracking-tight leading-none">
+                                <div className="mt-4 mb-2">
+                                    <h3 className="text-2xl font-black text-white group-hover:text-luxury-gold transition-all duration-500 font-display tracking-tight leading-none">
                                         {listener.name}
                                     </h3>
                                 </div>
-                                <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] mb-6 italic">
-                                    {listener.spec}
-                                </p>
+                                <div className="flex items-center gap-2 mb-6">
+                                    <div className="w-1 h-1 rounded-full bg-luxury-gold/40" />
+                                    <p className="text-[11px] text-white/40 font-bold uppercase tracking-[0.2em]">
+                                        {listener.spec}
+                                    </p>
+                                    <div className="w-1 h-1 rounded-full bg-luxury-gold/40" />
+                                </div>
 
-                                {/* Skills / Tags */}
-                                <div className="flex flex-wrap justify-center gap-1.5 mb-6">
+                                {/* Premium Skills / Tags */}
+                                <div className="flex flex-wrap justify-center gap-2 mb-8 items-center">
                                     {listener.tags.map(tag => (
-                                        <span key={tag} className="px-3 py-1 bg-white/5 rounded-full text-[8px] font-black uppercase tracking-widest text-luxury-gold/80 border border-white/5 group-hover:bg-luxury-gold/10 transition-colors">
+                                        <span key={tag} className="px-4 py-1.5 bg-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 border border-white/5 group-hover:border-luxury-gold/20 group-hover:text-white transition-all">
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
 
-                                {/* Start Talk Action */}
-                                <Link
+                                {/* Call Action Button - Luxury Style */}
+                                <a
                                     href="#pricing"
                                     onClick={(e) => {
                                         const element = document.getElementById("pricing");
                                         if (element) {
                                             e.preventDefault();
-                                            element.scrollIntoView({ behavior: "smooth" });
-                                            window.history.pushState(null, "", "/#pricing");
+                                            element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                            window.history.pushState(null, "", "#pricing");
                                         }
                                     }}
-                                    className="w-full py-3 bg-white/[0.05] border border-white/10 text-white rounded-2xl font-black uppercase text-[9px] tracking-[0.2em] mb-8 hover:bg-white hover:text-dark hover:scale-105 transition-all duration-500 shadow-xl"
+                                    className="w-full py-4 bg-white text-dark rounded-2xl font-black uppercase text-[10px] tracking-[0.25em] mb-8 hover:bg-luxury-gold hover:text-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 shadow-2xl text-center cursor-pointer group-hover:shadow-luxury-gold/20 relative overflow-hidden"
                                 >
-                                    Talk Now
-                                </Link>
+                                    <span className="relative z-10 flex items-center justify-center gap-2">
+                                        Talk Now <Mic2 className="w-3.5 h-3.5" />
+                                    </span>
+                                </a>
 
-                                {/* Availability Hallmarks */}
-                                <div className="mt-auto w-full pt-6 border-t border-white/5 flex items-center justify-between">
-                                    <div className="flex items-center gap-1">
-                                        <Mic2 className="w-3 h-3 text-white/10" />
-                                        <span className="text-[8px] font-black text-white/20 uppercase tracking-widest">Voice Live</span>
+                                {/* Experience & Trust Metrics */}
+                                <div className="mt-auto w-full pt-6 border-t border-white/5 flex items-center justify-between opacity-60 group-hover:opacity-100 transition-opacity">
+                                    <div className="flex items-center gap-2">
+                                        <div className="flex -space-x-1">
+                                            {[1, 2, 3].map(i => (
+                                                <div key={i} className="w-4 h-4 rounded-full border border-dark bg-slate-800 flex items-center justify-center overflow-hidden">
+                                                    <User className="w-2.5 h-2.5 text-white/10" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <span className="text-[8px] font-black text-white/30 uppercase tracking-widest">500+ Talks</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
+                                    <div className="flex items-center gap-1.5 py-1 px-2.5 bg-luxury-gold/10 rounded-lg border border-luxury-gold/20">
                                         <Star className="w-2.5 h-2.5 text-luxury-gold fill-luxury-gold" />
-                                        <span className="text-[8px] font-black text-white uppercase tracking-widest">4.9</span>
+                                        <span className="text-[9px] font-black text-luxury-gold uppercase tracking-widest">4.9</span>
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Decorative Corner Shines */}
+                            <div className="absolute top-12 left-0 w-12 h-12 bg-luxury-gold/10 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute bottom-0 right-0 w-12 h-12 bg-blue-500/10 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                         </motion.div>
                     ))}
                 </div>

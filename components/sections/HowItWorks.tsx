@@ -103,21 +103,21 @@ export default function HowItWorks() {
                     transition={{ delay: 0.6 }}
                     className="mt-20 text-center"
                 >
-                    <Link
+                    <a
                         href="#pricing"
                         onClick={(e) => {
                             const element = document.getElementById("pricing");
                             if (element) {
                                 e.preventDefault();
-                                element.scrollIntoView({ behavior: "smooth" });
-                                window.history.pushState(null, "", "/#pricing");
+                                element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                window.history.pushState(null, "", "#pricing");
                             }
                         }}
-                        className="inline-flex items-center gap-3 px-10 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[11px] transition-all duration-500 hover:scale-105 shadow-xl"
+                        className="inline-flex items-center gap-3 px-10 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[11px] transition-all duration-500 hover:scale-105 shadow-xl cursor-pointer"
                     >
                         Start Your First Call
                         <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    </a>
                     <p className="mt-6 text-[10px] font-black text-white/30 tracking-[0.4em] uppercase">No Sign-Up Required • 100% Private</p>
                 </motion.div>
             </div>
