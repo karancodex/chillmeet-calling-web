@@ -66,20 +66,20 @@ export default function TrustWitness() {
                         </div>
 
                         <div className="flex justify-center lg:justify-start">
-                            <Link
+                            <a
                                 href="#pricing"
                                 onClick={(e) => {
                                     const element = document.getElementById("pricing");
                                     if (element) {
                                         e.preventDefault();
-                                        element.scrollIntoView({ behavior: "smooth" });
-                                        window.history.pushState(null, "", "/#pricing");
+                                        element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                        window.history.pushState(null, "", "#pricing");
                                     }
                                 }}
-                                className="px-10 py-4 bg-white text-dark rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-luxury-gold hover:scale-105 transition-all shadow-xl"
+                                className="px-10 py-4 bg-white text-dark rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-luxury-gold hover:scale-105 transition-all shadow-xl cursor-pointer"
                             >
                                 Start Your Journey
-                            </Link>
+                            </a>
                         </div>
                     </div>
 

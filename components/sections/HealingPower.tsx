@@ -88,20 +88,20 @@ export default function HealingPower() {
                         </div>
 
                         <div className="flex justify-center lg:justify-start pt-4">
-                            <Link
+                            <a
                                 href="#pricing"
                                 onClick={(e) => {
                                     const element = document.getElementById("pricing");
                                     if (element) {
                                         e.preventDefault();
-                                        element.scrollIntoView({ behavior: "smooth" });
-                                        window.history.pushState(null, "", "/#pricing");
+                                        element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                        window.history.pushState(null, "", "#pricing");
                                     }
                                 }}
-                                className="px-12 py-5 bg-white text-dark rounded-full font-black uppercase text-[10px] tracking-[0.2em] hover:bg-luxury-gold hover:text-white hover:scale-105 transition-all shadow-2xl active:scale-95"
+                                className="px-12 py-5 bg-white text-dark rounded-full font-black uppercase text-[10px] tracking-[0.2em] hover:bg-luxury-gold hover:text-white hover:scale-105 transition-all shadow-2xl active:scale-95 cursor-pointer"
                             >
                                 Get Started Now
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </motion.div>

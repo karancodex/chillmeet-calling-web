@@ -31,10 +31,10 @@ const plans = [
         popular: false
     },
     {
-        id: "plan_10",
+        id: "plan_15",
         name: "Deep Talk",
-        duration: "10 min",
-        minutes: 10,
+        duration: "15 min",
+        minutes: 15,
         price: 29,
         icon: Zap,
         color: "text-luxury-gold",
@@ -42,10 +42,10 @@ const plans = [
         popular: true
     },
     {
-        id: "plan_15",
+        id: "plan_25",
         name: "Healing Soul",
-        duration: "15 min",
-        minutes: 20,
+        duration: "25 min",
+        minutes: 25,
         price: 49,
         icon: Shield,
         color: "text-purple-400",
@@ -360,14 +360,14 @@ export default function Pricing() {
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1, duration: 1 }}
                             className={clsx(
-                                "group relative overflow-hidden flex flex-col pt-10",
+                                "group relative flex flex-col pt-10",
                                 plan.popular && "z-10"
                             )}
                         >
                             {/* Card Body */}
                             <div className={clsx(
                                 "h-full bg-white/[0.02] border rounded-[2.5rem] p-8 md:p-10 flex flex-col items-center text-center transition-all duration-700 shadow-2xl relative",
-                                plan.popular ? "border-luxury-gold/50 bg-white/[0.04]" : "border-white/5 hover:border-white/20"
+                                plan.popular ? "border-luxury-gold/50 bg-white/[0.04]" : "border-foreground/5 hover:border-white/20"
                             )}>
                                 {plan.popular && (
                                     <div className="absolute top-0 left-0 right-0 h-1 bg-luxury-gold/30" />
@@ -382,29 +382,29 @@ export default function Pricing() {
                                     <plan.icon className={clsx("w-8 h-8", plan.color)} />
                                 </div>
 
-                                <h3 className="text-xl font-black text-white mb-2 font-display uppercase tracking-tight leading-none group-hover:text-luxury-gold transition-colors">
+                                <h3 className="text-xl font-black text-foreground mb-2 font-display uppercase tracking-tight leading-none group-hover:text-luxury-gold transition-colors">
                                     {plan.name}
                                 </h3>
-                                <p className="text-[10px] text-white/40 font-black uppercase tracking-[0.3em] mb-10">
+                                <p className="text-[10px] text-foreground/40 font-black uppercase tracking-[0.3em] mb-10">
                                     {plan.duration}
                                 </p>
 
                                 <div className="flex items-baseline gap-1 mb-10">
-                                    <span className="text-4xl md:text-5xl font-black text-white tracking-tighter">
+                                    <span className="text-4xl md:text-5xl font-black text-foreground tracking-tighter">
                                         {plan.price === 0 ? 'FREE' : (typeof plan.price === 'number' ? `₹${plan.price}` : plan.price)}
                                     </span>
                                     {typeof plan.price === 'number' && plan.price !== 0 && (
-                                        <span className="text-[9px] text-white/20 font-black uppercase tracking-widest">/ session</span>
+                                        <span className="text-[9px] text-foreground/20 font-black uppercase tracking-widest">/ session</span>
                                     )}
                                 </div>
 
                                 {/* Minimal Features */}
-                                <div className="w-full space-y-4 mb-10 pt-8 border-t border-white/5">
-                                    <div className="flex items-center justify-center gap-3 text-[9px] font-black text-white/30 uppercase tracking-[0.2em]">
+                                <div className="w-full space-y-4 mb-10 pt-8 border-t border-foreground/5">
+                                    <div className="flex items-center justify-center gap-3 text-[9px] font-black text-foreground/30 uppercase tracking-[0.2em]">
                                         <div className="w-1.5 h-1.5 rounded-full bg-luxury-gold" />
                                         <span>Private Audio Sanctuary</span>
                                     </div>
-                                    <div className="flex items-center justify-center gap-3 text-[9px] font-black text-white/30 uppercase tracking-[0.2em]">
+                                    <div className="flex items-center justify-center gap-3 text-[9px] font-black text-foreground/30 uppercase tracking-[0.2em]">
                                         <div className="w-1.5 h-1.5 rounded-full bg-luxury-gold" />
                                         <span>Full Stealth Mode</span>
                                     </div>
@@ -416,8 +416,8 @@ export default function Pricing() {
                                     className={clsx(
                                         "w-full py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-500 flex items-center justify-center gap-3 active:scale-95 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]",
                                         plan.popular
-                                            ? "bg-white text-dark hover:bg-luxury-gold hover:text-white"
-                                            : "bg-white/[0.05] border border-white/10 text-white hover:bg-white hover:text-dark"
+                                            ? "bg-white text-dark hover:bg-luxury-gold hover:text-foreground"
+                                            : "bg-white/[0.05] border border-foreground/10 text-foreground hover:bg-white hover:text-dark"
                                     )}
                                 >
                                     {loading === plan.id ? (
@@ -442,12 +442,12 @@ export default function Pricing() {
 
                 {/* Footer Credits & Trust */}
                 <div className="mt-16 flex flex-col items-center">
-                    <p className="text-[9px] text-white/20 font-medium tracking-widest uppercase mb-10">
+                    <p className="text-[9px] text-foreground/20 font-medium tracking-widest uppercase mb-10">
                         * Secured by SSL & Military-Grade Encryption
                     </p>
                     <div className="flex flex-wrap justify-center items-center gap-10 opacity-30 hover:opacity-100 transition-opacity">
                         <div className="flex items-center gap-2">
-                            <Shield className="w-4 h-4 text-white/40" />
+                            <Shield className="w-4 h-4 text-foreground/40" />
                             <span className="text-[9px] font-black uppercase tracking-widest text-white/60">Secure Gateway</span>
                         </div>
                         <span className="text-xl font-black tracking-tighter text-white font-display">CASHFREE</span>

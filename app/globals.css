@@ -1,25 +1,54 @@
 @import "tailwindcss";
 
+:root {
+  --background: #020305;
+  --foreground: #F8FAFC;
+  --primary: #8B5CF6;
+  --primary-dark: #6D28D9;
+  --secondary: #06B6D4;
+  --accent: #EC4899;
+  --luxury-gold: #D4AF37;
+  --luxury-platinum: #E5E4E2;
+  --burgundy: #450A1A;
+  --blue-deep: #0A0F2C;
+  --dark: #010204;
+  --slate-overlay: rgba(2, 6, 23, 0.6);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+}
+
+.light {
+  --background: #FDFCFB;
+  --foreground: #1A1A1A;
+  --primary: #7C3AED;
+  --primary-dark: #5B21B6;
+  --secondary: #0891B2;
+  --accent: #DB2777;
+  --luxury-gold: #B8860B;
+  --luxury-platinum: #A0A0A0;
+  --burgundy: #881337;
+  --blue-deep: #1E3A8A;
+  --dark: #F3F4F6;
+  --slate-overlay: rgba(241, 245, 249, 0.6);
+  --glass-bg: rgba(0, 0, 0, 0.02);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --card-bg: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.01));
+}
+
 @theme {
-  /* Luxury Premium Palette - HSL Tailored for depth and elegance */
-  --color-background: #020305;
-  --color-foreground: #F8FAFC;
-
-  --color-primary: #8B5CF6;
-  /* Amethyst */
-  --color-primary-dark: #6D28D9;
-  --color-secondary: #06B6D4;
-  /* Cyan */
-  --color-accent: #EC4899;
-  /* Pink/Rose */
-  --color-luxury-gold: #D4AF37;
-  /* Metallic Gold */
-  --color-luxury-platinum: #E5E4E2;
-  --color-burgundy: #450A1A;
-  --color-blue-deep: #0A0F2C;
-
-  --color-dark: #010204;
-  --color-slate-overlay: rgba(2, 6, 23, 0.6);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-luxury-gold: var(--luxury-gold);
+  --color-luxury-platinum: var(--luxury-platinum);
+  --color-burgundy: var(--burgundy);
+  --color-blue-deep: var(--blue-deep);
+  --color-dark: var(--dark);
+  --color-slate-overlay: var(--slate-overlay);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-outfit), var(--font-sans);
@@ -46,38 +75,43 @@ h4,
 /* Premium Design System */
 @layer utilities {
   .glass-premium {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--glass-bg);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
   }
 
   .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    background: var(--card-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .glass-card:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(124, 108, 255, 0.2);
+    background: var(--card-bg);
+    opacity: 0.9;
+    border-color: var(--luxury-gold);
+    box-shadow: var(--card-shadow);
     transform: translateY(-8px) scale(1.01);
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-linear-to-br from-white via-primary to-secondary;
+    @apply bg-clip-text text-transparent bg-linear-to-br from-foreground via-primary to-secondary;
   }
 
   .text-gradient-premium {
     @apply bg-clip-text text-transparent bg-linear-to-tr from-primary via-accent to-secondary;
   }
 
+  .bg-theme-gradient {
+    @apply bg-linear-to-r from-luxury-gold via-foreground to-luxury-gold;
+  }
+
   .grad-border {
     position: relative;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    background: var(--card-bg);
     padding: 1px;
   }
 
@@ -87,7 +121,7 @@ h4,
     inset: 0;
     padding: 1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent, rgba(124, 108, 255, 0.2));
+    background: linear-gradient(135deg, var(--luxury-gold), transparent, var(--primary));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -141,16 +175,16 @@ h4,
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--glass-border);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--primary);
 }
 
 @layer utilities {
@@ -212,6 +246,7 @@ h4,
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(-50%);
     }

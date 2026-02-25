@@ -82,6 +82,7 @@ export const metadata: Metadata = {
 };
 
 import BottomNav from "@/components/ui/BottomNav";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -94,8 +95,15 @@ export default function RootLayout({
         className={`${outfit.variable} ${inter.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        {children}
-        <BottomNav />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <BottomNav />
+        </ThemeProvider>
       </body>
     </html>
   );

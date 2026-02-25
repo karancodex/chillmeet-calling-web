@@ -76,21 +76,21 @@ export default function LuxuryExperience() {
                                 A Sanctuary For <br />
                                 Your <span className="text-luxury-gold italic">Quiet Thoughts.</span>
                             </h3>
-                            <Link
+                            <a
                                 href="#pricing"
                                 onClick={(e) => {
                                     const element = document.getElementById("pricing");
                                     if (element) {
                                         e.preventDefault();
-                                        element.scrollIntoView({ behavior: "smooth" });
-                                        window.history.pushState(null, "", "/#pricing");
+                                        element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                        window.history.pushState(null, "", "#pricing");
                                     }
                                 }}
-                                className="inline-flex items-center gap-3 px-8 py-3 bg-white text-dark rounded-full font-black uppercase text-[9px] tracking-widest hover:bg-luxury-gold hover:scale-105 transition-all shadow-xl"
+                                className="inline-flex items-center gap-3 px-8 py-3 bg-white text-dark rounded-full font-black uppercase text-[9px] tracking-widest hover:bg-luxury-gold hover:scale-105 transition-all shadow-xl cursor-pointer"
                             >
                                 Experience The Difference
                                 <ArrowUpRight className="w-3.5 h-3.5" />
-                            </Link>
+                            </a>
                         </div>
                     </motion.div>
 

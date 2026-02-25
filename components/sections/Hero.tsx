@@ -120,35 +120,35 @@ export default function Hero() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5, duration: 1 }}
                             >
-                                <Link
+                                <a
                                     href="#pricing"
                                     onClick={(e) => {
                                         const element = document.getElementById("pricing");
                                         if (element) {
                                             e.preventDefault();
-                                            element.scrollIntoView({ behavior: "smooth" });
-                                            window.history.pushState(null, "", "/#pricing");
+                                            element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                            window.history.pushState(null, "", "#pricing");
                                         }
                                     }}
-                                    className="w-full sm:w-auto px-12 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-500 hover:bg-primary-dark shadow-[0_20px_40px_-10px_rgba(139,92,246,0.3)] hover:scale-105 active:scale-95 text-center"
+                                    className="w-full sm:w-auto px-12 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-500 hover:bg-primary-dark shadow-[0_20px_40px_-10px_rgba(139,92,246,0.3)] hover:scale-105 active:scale-95 text-center cursor-pointer"
                                 >
                                     {slides[current].cta}
-                                </Link>
+                                </a>
 
-                                <Link
+                                <a
                                     href="#how-it-works"
                                     onClick={(e) => {
                                         const element = document.getElementById("how-it-works");
                                         if (element) {
                                             e.preventDefault();
-                                            element.scrollIntoView({ behavior: "smooth" });
-                                            window.history.pushState(null, "", "/#how-it-works");
+                                            element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                            window.history.pushState(null, "", "#how-it-works");
                                         }
                                     }}
-                                    className="w-full sm:w-auto px-12 py-5 bg-white/5 border border-white/20 text-white rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-500 hover:bg-white/10 backdrop-blur-2xl text-center"
+                                    className="w-full sm:w-auto px-12 py-5 bg-white/5 border border-white/20 text-white rounded-full font-black uppercase tracking-widest text-[9px] transition-all duration-500 hover:bg-white/10 backdrop-blur-2xl text-center cursor-pointer"
                                 >
                                     How It Works
-                                </Link>
+                                </a>
                             </motion.div>
                         </motion.div>
                     </AnimatePresence>
