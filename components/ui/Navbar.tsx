@@ -9,7 +9,10 @@ import clsx from "clsx";
 import ListnerZoneLogo from "./ListnerZoneLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
+import { useAuth } from "@/contexts/AuthContext";
+
 export default function Navbar() {
+    const { user, logout } = useAuth();
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { scrollY } = useScroll();
@@ -78,15 +81,15 @@ export default function Navbar() {
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-12">
                         <Link
-                            href="/contact"
+                            href="/listener/apply"
                             className="text-xs font-bold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
                         >
                             Join as Listener
                         </Link>
 
                         <div className="flex items-center gap-10">
-                            {["Pricing", "Journal", "FAQ", "About", "Safety"].map((item) => {
-                                const href = item === "Pricing" ? "/#pricing" : item === "Journal" ? "/blog" : item === "FAQ" ? "/faq" : `/${item.toLowerCase().replace(/ /g, "-")}`;
+                            {["Pricing", "FAQ", "About", "Safety"].map((item) => {
+                                const href = item === "Pricing" ? "/#pricing" : item === "FAQ" ? "/faq" : `/${item.toLowerCase().replace(/ /g, "-")}`;
                                 return (
                                     <Link
                                         key={item}
@@ -100,12 +103,32 @@ export default function Navbar() {
                             })}
                         </div>
 
-                        <Link
-                            href="/contact"
-                            className="text-xs font-bold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
-                        >
-                            Contact
-                        </Link>
+                        {user ? (
+                            <div className="flex items-center gap-6">
+                                <span className="text-[10px] font-black text-luxury-gold/60 uppercase tracking-widest">Hi, {user.name}</span>
+                                <button
+                                    onClick={logout}
+                                    className="text-xs font-bold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-6">
+                                <Link
+                                    href="/auth/login"
+                                    className="text-xs font-bold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
+                                >
+                                    Login
+                                </Link>
+                                <Link
+                                    href="/auth/signup"
+                                    className="px-6 py-2 bg-theme-gradient rounded-full text-xs font-bold uppercase tracking-widest text-white hover:opacity-80 transition-all shadow-lg shadow-luxury-gold/10"
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
+                        )}
 
                         <ThemeToggle />
                     </div>
@@ -168,8 +191,8 @@ export default function Navbar() {
                                 </Link>
                             </motion.div>
 
-                            {["Pricing", "Journal", "FAQ", "About", "Safety"].map((item, idx) => {
-                                const href = item === "Pricing" ? "/#pricing" : item === "Journal" ? "/blog" : item === "FAQ" ? "/faq" : `/${item.toLowerCase().replace(/ /g, "-")}`;
+                            {["Pricing", "FAQ", "About", "Safety"].map((item, idx) => {
+                                const href = item === "Pricing" ? "/#pricing" : item === "FAQ" ? "/faq" : `/${item.toLowerCase().replace(/ /g, "-")}`;
                                 return (
                                     <motion.div
                                         key={item}
@@ -197,13 +220,34 @@ export default function Navbar() {
                                 transition={{ delay: 0.5 }}
                                 className="pt-8 border-t border-white/5"
                             >
-                                <Link
-                                    href="/contact"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="text-2xl font-black text-luxury-gold hover:text-white transition-colors block uppercase tracking-tighter"
-                                >
-                                    Contact Support
-                                </Link>
+                                {user ? (
+                                    <div className="space-y-6">
+                                        <p className="text-luxury-gold font-black uppercase text-sm tracking-widest">Hi, {user.name}</p>
+                                        <button
+                                            onClick={() => { logout(); setIsMenuOpen(false); }}
+                                            className="text-2xl font-black text-white hover:text-luxury-gold transition-colors block uppercase tracking-tighter"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-6">
+                                        <Link
+                                            href="/auth/login"
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="text-2xl font-black text-white hover:text-luxury-gold transition-colors block uppercase tracking-tighter"
+                                        >
+                                            Login
+                                        </Link>
+                                        <Link
+                                            href="/auth/signup"
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="text-2xl font-black text-luxury-gold hover:text-white transition-colors block uppercase tracking-tighter"
+                                        >
+                                            Sign Up
+                                        </Link>
+                                    </div>
+                                )}
                             </motion.div>
                         </div>
 

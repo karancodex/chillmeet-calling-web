@@ -16,6 +16,11 @@ const navItems = [
 export default function BottomNav() {
     const pathname = usePathname();
 
+    // Hide BottomNav on session pages (calls)
+    if (pathname?.includes("/sessions/")) {
+        return null;
+    }
+
     const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         if (href.startsWith("/#") || href.startsWith("#")) {
             const id = href.replace("/#", "").replace("#", "");

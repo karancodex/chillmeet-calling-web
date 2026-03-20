@@ -83,6 +83,9 @@ export const metadata: Metadata = {
 
 import BottomNav from "@/components/ui/BottomNav";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Providers } from "./providers";
+import '@livekit/components-styles';
+import CallNotification from "@/components/features/CallNotification";
 
 export default function RootLayout({
   children,
@@ -101,8 +104,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <BottomNav />
+          <Providers>
+            {children}
+            <CallNotification />
+            <BottomNav />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
